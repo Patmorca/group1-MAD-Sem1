@@ -34,7 +34,7 @@
             android:backgroundTint="#C9CEBD"
 
 
-            android:fontFamily="@font/Krona"
+            android:fontFamily="@font/krona"
             android:text="@string/Login"
             android:textColor="@color/black" />
 
@@ -45,7 +45,7 @@
             android:layout_centerInParent="true"
 
             android:backgroundTint="#C9CEBD"
-            android:fontFamily="@font/Krona"
+            android:fontFamily="@font/krona"
 
 
             android:text="@string/Add"
@@ -65,7 +65,7 @@
             android:layout_marginEnd="25dp"
             android:backgroundTint="#C9CEBD"
 
-            android:fontFamily="@font/Krona"
+            android:fontFamily="@font/krona"
             android:text="@string/Settings"
             android:textColor="@color/black" />
 
@@ -111,7 +111,7 @@
 
             android:text="@string/Total"
             android:textColor="@color/white"
-            android:fontFamily="@font/Krona"
+            android:fontFamily="@font/krona"
 
         />
 
@@ -126,7 +126,7 @@
 
             android:text="@string/Price"
             android:textColor="@color/white"
-            android:fontFamily="@font/Krona"
+            android:fontFamily="@font/krona"
             android:textSize="40sp"
 
         />
