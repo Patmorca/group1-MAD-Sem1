@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/Banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/HeaderDescription"
+            app:srcCompat="@drawable/headerback_svg" />
+
+
+        <Button
+            android:id="@+id/LoginBtn"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="25dp"
+            android:backgroundTint="#C9CEBD"
+
+
+            android:fontFamily="@font/Krona"
+            android:text="@string/Login"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/AddSubBtn"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+
+            android:backgroundTint="#C9CEBD"
+            android:fontFamily="@font/Krona"
+
+
+            android:text="@string/Add"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:ignore="RelativeOverlap" />
+
+
+        <Button
+            android:id="@+id/SettingsBtn"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="25dp"
+            android:backgroundTint="#C9CEBD"
+
+            android:fontFamily="@font/Krona"
+            android:text="@string/Settings"
+            android:textColor="@color/black" />
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/FooterLayout"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/Footer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/FooterDescription"
+            app:srcCompat="@drawable/footerback_svg"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Total"
+
+            android:layout_alignBottom="@id/Footer"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+
+            android:text="@string/Total"
+            android:textColor="@color/white"
+            android:fontFamily="@font/Krona"
+
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Price"
+
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+
+            android:text="@string/Price"
+            android:textColor="@color/white"
+            android:fontFamily="@font/Krona"
+            android:textSize="40sp"
+
+        />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SubScribe</string>
+
+    <string name="HeaderDescription">Header for top row buttons</string>
+    <string name="FooterDescription">Footer for Displaying Price</string>
+
+    <string name="Add">+</string>
+    <string name="Login">Login</string>
+    <string name="Settings">Settings</string>
+
+    <string name="Total">Total</string>
+    <string name="Price">$0.00</string>
+</resources>
