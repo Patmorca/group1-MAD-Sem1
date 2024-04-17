@@ -13,5 +13,12 @@
 
     <string name="Home">Home</string>
     <string name="CreateSub">Create Subscription</string>
+    <string name="SubCreate_Name">Name:</string>
+    <string name="Freq_Name">Frequency:</string>
+    <string name="Start_Name">Start Date:</string>
+    <string name="Rem_Name">Reminder:</string>
+    <string name="Cost_Name">Cost:</string>
+    <string name="Email_Name">Email:</string>
+    <string name="Password_Name">Password:</string>
 
 </resources>

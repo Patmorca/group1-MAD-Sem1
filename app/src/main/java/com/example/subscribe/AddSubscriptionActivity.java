@@ -1,7 +1,12 @@
 package com.example.subscribe;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
@@ -10,9 +15,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class AddSubscriptionActivity extends AppCompatActivity {
 
     private Spinner nameSpinner;
+    private Spinner freqSpinner;
+    private Spinner remSpinner;
+    Button datePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +36,47 @@ public class AddSubscriptionActivity extends AppCompatActivity {
             return insets;
         });
 
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
 
-        nameSpinner = findViewById(R.id.NameOptions);
-        String[] subscriptions = getResources().getStringArray(R.array.SubscriptionNames);
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,subscriptions);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        nameSpinner.setAdapter(adapter);
 
+        String datePickerInitial = day + "/" + month + "/" + year;
+        datePicker = (Button) findViewById(R.id.DatePickerButton);
+        datePicker.setText(datePickerInitial);
+        datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog(year,month,day);
+            }
+        });
+
+
+        freqSpinner = findViewById(R.id.FreqOptions);
+        String[] frequencies = getResources().getStringArray(R.array.FrequencyOptions);
+        ArrayAdapter freqAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,frequencies);
+        freqAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        freqSpinner.setAdapter(freqAdapter);
+
+        remSpinner = findViewById(R.id.ReminderOptions);
+        String[] reminders = getResources().getStringArray(R.array.ReminderOptions);
+        ArrayAdapter remAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,reminders);
+        remAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        remSpinner.setAdapter(remAdapter);
     }
+
+    private void openDialog(int year, int month, int day)
+    {
+        DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                String date = String.valueOf(day)+"/"+String.valueOf(month)+"/"+String.valueOf(year);
+                datePicker.setText(date);
+            }
+        }, year,month,day);
+        dialog.show();
+    }
+
+
 }

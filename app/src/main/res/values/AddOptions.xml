@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="SubscriptionNames">
-        <item>Netflix</item>
-        <item>Hulu</item>
-        <item>Paramount+</item>
-        <item>Xbox Game Pass</item>
+    <string-array name="FrequencyOptions">
+        <item>30 Days</item>
+        <item>60 Days</item>
+        <item>90 Days</item>
+        <item>180 Days</item>
+        <item>1 Month</item>
+        <item>3 Months</item>
+        <item>6 Months</item>
+        <item>12 Months</item>
+    </string-array>
+    <string-array name="ReminderOptions">
+        <item>The Day Before</item>
+        <item>3 Days Before</item>
+        <item>Week Before</item>
     </string-array>
 
 </resources>
