@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="SubscriptionNames">
+        <item>Netflix</item>
+        <item>Hulu</item>
+        <item>Paramount+</item>
+        <item>Xbox Game Pass</item>
+    </string-array>
+
+</resources>
