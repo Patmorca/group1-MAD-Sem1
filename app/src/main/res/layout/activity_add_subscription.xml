@@ -10,13 +10,13 @@
 
 
     <RelativeLayout
-    android:id="@+id/Banner"
+    android:id="@+id/AAS_Banner"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     tools:ignore="UselessParent">
 
     <ImageView
-        android:id="@+id/Header"
+        android:id="@+id/AAS_Header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -25,7 +25,7 @@
         app:srcCompat="@drawable/headerback_svg" />
 
         <Button
-            android:id="@+id/HomeBtn"
+            android:id="@+id/AAS_HomeBtn"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
 
@@ -41,7 +41,7 @@
             android:textColor="@color/black" />
 
         <Button
-            android:id="@+id/AddSubBtn"
+            android:id="@+id/AAS_AddSubBtn"
             android:layout_width="80dp"
             android:layout_height="60dp"
             android:layout_centerInParent="true"
@@ -59,7 +59,7 @@
 
 
         <Button
-            android:id="@+id/SettingsBtn"
+            android:id="@+id/AAS_SettingsBtn"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button"
@@ -76,17 +76,17 @@
 
 
     <RelativeLayout
-        android:id="@+id/SubOptions"
+        android:id="@+id/AAS_SubOptions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/Banner"
+        android:layout_below="@id/AAS_Banner"
 
         android:layout_marginTop="10dp"
         android:layout_marginBottom="85dp"
         >
 
         <TextView
-            android:id="@+id/NameTitle"
+            android:id="@+id/AAS_NameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/SubCreate_Name"
@@ -98,22 +98,24 @@
             />
 
         <EditText
-            android:id="@+id/Name"
+            android:id="@+id/AAS_Name"
             android:layout_width="350dp"
             android:layout_height="35dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/NameTitle"
+            android:layout_below="@id/AAS_NameTitle"
 
-            android:textAlignment="center"
+            android:paddingStart="10dp"
+            android:hint="Name..."
             android:background="#C9CEBD"
             android:popupBackground="#C9CEBD"
+
             android:inputType="text"
             android:imeOptions="actionDone"
             tools:ignore="Autofill,LabelFor,TextFields"
         />
 
         <TextView
-            android:id="@+id/FreqTitle"
+            android:id="@+id/AAS_FreqTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Freq_Name"
@@ -126,20 +128,20 @@
 
             />
         <Spinner
-            android:id="@+id/FreqOptions"
+            android:id="@+id/AAS_FreqOptions"
             android:layout_width="350dp"
             android:layout_height="35dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/FreqTitle"
+            android:layout_below="@id/AAS_FreqTitle"
 
 
-            android:textAlignment="center"
+
             android:background="#C9CEBD"
             android:popupBackground="#C9CEBD"
             />
 
         <TextView
-        android:id="@+id/StartDateTitle"
+        android:id="@+id/AAS_StartDateTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Start_Name"
@@ -152,19 +154,21 @@
         />
 
         <Button
-            android:id="@+id/DatePickerButton"
+            android:id="@+id/AAS_DatePickerBtn"
             android:layout_width="350dp"
             android:layout_height="35dp"
             android:layout_centerHorizontal="true"
             android:background="@drawable/datepickerbutton"
-            android:layout_below="@id/StartDateTitle"
+            android:layout_below="@id/AAS_StartDateTitle"
 
+            android:textAlignment="textStart"
+            android:paddingStart="10dp"
             android:textColor="@color/black"
             android:backgroundTint="#C9CEBD"
         />
 
         <TextView
-            android:id="@+id/ReminderTitle"
+            android:id="@+id/AAS_ReminderTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Rem_Name"
@@ -177,21 +181,20 @@
 
             />
         <Spinner
-            android:id="@+id/ReminderOptions"
+            android:id="@+id/AAS_ReminderOptions"
             android:layout_width="350dp"
             android:layout_height="35dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/ReminderTitle"
+            android:layout_below="@id/AAS_ReminderTitle"
 
 
-            android:textAlignment="center"
             android:background="#C9CEBD"
             android:popupBackground="#C9CEBD"
             />
 
 
         <TextView
-            android:id="@+id/CostTitle"
+            android:id="@+id/AAS_CostTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Cost_Name"
@@ -209,23 +212,26 @@
         <!--NEED TO ADD $ FORMATTING -->
 
         <EditText
-            android:id="@+id/Cost"
+            android:id="@+id/AAS_Cost"
             android:layout_width="350dp"
             android:layout_height="35dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/CostTitle"
+            android:layout_below="@id/AAS_CostTitle"
 
-            android:textAlignment="center"
+            android:paddingStart="10dp"
+            android:hint="Cost..."
             android:background="#C9CEBD"
             android:popupBackground="#C9CEBD"
+
             android:inputType="number"
             android:imeOptions="actionDone"
+
             tools:ignore="Autofill,LabelFor,TextFields"
 
         />
 
         <TextView
-            android:id="@+id/EmailTitle"
+            android:id="@+id/AAS_EmailTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Email_Name"
@@ -238,23 +244,26 @@
             />
 
         <EditText
-            android:id="@+id/Email"
+            android:id="@+id/AAS_Email"
             android:layout_width="350dp"
             android:layout_height="35dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/EmailTitle"
+            android:layout_below="@id/AAS_EmailTitle"
 
-            android:textAlignment="center"
+            android:paddingStart="10dp"
+            android:hint="Email..."
             android:background="#C9CEBD"
             android:popupBackground="#C9CEBD"
+
             android:inputType="textEmailAddress"
             android:imeOptions="actionDone"
+
             tools:ignore="Autofill,LabelFor,TextFields"
 
             />
 
         <TextView
-            android:id="@+id/PasTitle"
+            android:id="@+id/AAS_PasTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Password_Name"
@@ -267,17 +276,20 @@
             />
 
         <EditText
-            android:id="@+id/Password"
+            android:id="@+id/AAS_Password"
             android:layout_width="350dp"
             android:layout_height="35dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/PasTitle"
+            android:layout_below="@id/AAS_PasTitle"
 
-            android:textAlignment="center"
+            android:paddingStart="10dp"
+            android:hint="Password..."
             android:background="#C9CEBD"
             android:popupBackground="#C9CEBD"
+
             android:inputType="textPassword"
             android:imeOptions="actionDone"
+
             tools:ignore="Autofill,LabelFor,TextFields"
 
             />
@@ -292,20 +304,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:id="@+id/FooterLayout"
+        android:id="@+id/AAS_FooterLayout"
         tools:ignore="UselessParent">
 
         <ImageView
-            android:id="@+id/Footer"
+            android:id="@+id/AAS_Footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:adjustViewBounds="true"
-            android:contentDescription="@string/FooterDescription"
+            android:contentDescription="@string/FooterCreateDescription"
             app:srcCompat="@drawable/footerback_svg"
         />
 
         <Button
+            android:id="@+id/AAS_CreateBtn"
             android:layout_width="250dp"
             android:layout_height="60dp"
 

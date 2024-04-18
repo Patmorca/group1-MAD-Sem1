@@ -36,7 +36,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         });
 
 
-        Home = (Button) findViewById(R.id.HomeBtn);
+        Home = (Button) findViewById(R.id.AAS_HomeBtn);
         Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,7 +52,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
 
 
         String datePickerInitial = day + "/" + month + "/" + year;
-        datePicker = (Button) findViewById(R.id.DatePickerButton);
+        datePicker = (Button) findViewById(R.id.AAS_DatePickerBtn);
         datePicker.setText(datePickerInitial);
         datePicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,13 +62,13 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         });
 
 
-        freqSpinner = findViewById(R.id.FreqOptions);
+        freqSpinner = findViewById(R.id.AAS_FreqOptions);
         String[] frequencies = getResources().getStringArray(R.array.FrequencyOptions);
         ArrayAdapter freqAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,frequencies);
         freqAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         freqSpinner.setAdapter(freqAdapter);
 
-        remSpinner = findViewById(R.id.ReminderOptions);
+        remSpinner = findViewById(R.id.AAS_ReminderOptions);
         String[] reminders = getResources().getStringArray(R.array.ReminderOptions);
         ArrayAdapter remAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,reminders);
         remAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

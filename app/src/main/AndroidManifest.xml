@@ -13,6 +13,9 @@
         android:theme="@style/Theme.SubScribe"
         tools:targetApi="31">
         <activity
+            android:name=".ViewSubscriptionActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddSubscriptionActivity"
             android:exported="false" />
         <activity

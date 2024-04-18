@@ -8,13 +8,13 @@
     tools:context=".MainActivity">
 
     <RelativeLayout
-        android:id="@+id/Banner"
+        android:id="@+id/AM_Banner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="UselessParent">
 
         <ImageView
-            android:id="@+id/Header"
+            android:id="@+id/AM_Header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -24,7 +24,7 @@
 
 
         <Button
-            android:id="@+id/LoginBtn"
+            android:id="@+id/AM_LoginBtn"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button"
@@ -40,7 +40,7 @@
             android:textColor="@color/black" />
 
         <Button
-            android:id="@+id/AddSubBtn"
+            android:id="@+id/AM_AddSubBtn"
             android:layout_width="80dp"
             android:layout_height="60dp"
             android:layout_centerInParent="true"
@@ -58,7 +58,7 @@
 
 
         <Button
-            android:id="@+id/SettingsBtn"
+            android:id="@+id/AM_SettingsBtn"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
 
@@ -78,7 +78,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/Banner"
+        android:layout_below="@id/AM_Banner"
         android:layout_marginBottom="82dp"
         >
 
@@ -93,11 +93,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:id="@+id/FooterLayout"
+        android:id="@+id/AM_FooterLayout"
         tools:ignore="UselessParent">
 
         <ImageView
-            android:id="@+id/Footer"
+            android:id="@+id/AM_Footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -109,9 +109,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/Total"
+            android:id="@+id/AM_Total"
 
-            android:layout_alignBottom="@id/Footer"
+            android:layout_alignBottom="@id/AM_Footer"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="5dp"
 
@@ -124,7 +124,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/Price"
+            android:id="@+id/AM_Price"
 
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"

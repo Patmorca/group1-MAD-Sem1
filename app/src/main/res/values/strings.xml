@@ -3,6 +3,8 @@
 
     <string name="HeaderDescription">Header for top row buttons</string>
     <string name="FooterDescription">Footer for Displaying Price</string>
+    <string name="FooterOptionsDescription">Footer for Displaying Options</string>
+    <string name="FooterCreateDescription">Footer for Displaying Create</string>
 
     <string name="Add">+</string>
     <string name="Login">Login</string>

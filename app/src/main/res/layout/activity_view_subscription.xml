@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewSubscriptionActivity">
+
+    <RelativeLayout
+        android:id="@+id/AVS_Banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/AVS_Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/HeaderDescription"
+            app:srcCompat="@drawable/headerback_svg" />
+
+        <Button
+            android:id="@+id/AVS_HomeBtn"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="25dp"
+            android:backgroundTint="#C9CEBD"
+            android:background="@drawable/button"
+
+
+            android:fontFamily="@font/krona"
+            android:text="@string/Home"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/AVS_AddSubBtn"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/button"
+
+            android:backgroundTint="#C9CEBD"
+            android:fontFamily="@font/krona"
+
+
+            android:text="@string/Add"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:ignore="RelativeOverlap" />
+
+
+        <Button
+            android:id="@+id/AVS_SettingsBtn"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="25dp"
+            android:backgroundTint="#C9CEBD"
+
+            android:fontFamily="@font/krona"
+            android:text="@string/Settings"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AVS_Banner"
+        android:layout_centerHorizontal="true"
+
+        android:id="@+id/AVS_Information"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HELLO"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HELLO"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HELLO"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HELLO"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HELLO"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HELLO"/>
+
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/AVS_FooterLayout"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/AVS_Footer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+
+            android:contentDescription="@string/FooterOptionsDescription"
+            app:srcCompat="@drawable/footerbackAVS_svg"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:layout_centerInParent="true">
+
+            <Button
+                android:id="@+id/AVS_Remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_margin="8dp"
+                android:layout_gravity="center_vertical"
+                android:backgroundTint="#C9CEBD"
+                android:background="@drawable/button"
+                />
+
+            <Button
+                android:id="@+id/AVS_Edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_margin="8dp"
+                android:layout_gravity="center_vertical"
+                android:backgroundTint="#C9CEBD"
+                android:background="@drawable/button"
+                />
+
+            <Button
+                android:id="@+id/AVS_ViewDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_margin="8dp"
+                android:layout_gravity="center_vertical"
+                android:backgroundTint="#C9CEBD"
+                android:background="@drawable/button"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
