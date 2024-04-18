@@ -1,6 +1,5 @@
 package com.example.subscribe;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +16,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class AddSubscriptionActivity extends AppCompatActivity {
 
-    private Spinner nameSpinner;
     private Spinner freqSpinner;
     private Spinner remSpinner;
     Button datePicker;
@@ -83,7 +80,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
-                String date = String.valueOf(day)+"/"+String.valueOf(month)+"/"+String.valueOf(year);
+                String date = (day)+"/"+(month)+"/"+(year);
                 datePicker.setText(date);
             }
         }, year,month,day);
