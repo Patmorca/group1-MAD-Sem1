@@ -2,6 +2,7 @@ package com.example.subscribe;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -24,6 +25,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
     private Spinner freqSpinner;
     private Spinner remSpinner;
     Button datePicker;
+    Button Home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,16 @@ public class AddSubscriptionActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+
+        Home = (Button) findViewById(R.id.HomeBtn);
+        Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddSubscriptionActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
         });
 
         Calendar cal = Calendar.getInstance();
