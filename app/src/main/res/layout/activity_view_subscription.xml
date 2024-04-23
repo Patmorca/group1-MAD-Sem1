@@ -137,7 +137,7 @@
             android:adjustViewBounds="true"
 
             android:contentDescription="@string/FooterOptionsDescription"
-            app:srcCompat="@drawable/footerbackAVS_svg"
+            app:srcCompat="@drawable/footerback_avs__svg"
             />
 
         <LinearLayout

@@ -5,15 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login_Activity"
+    tools:context=".SignUp_Activity"
     android:background="@color/background">
 
     <TextView
         android:id="@+id/AL_TV1_Title"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
         android:gravity="center"
-        android:layout_marginTop="84dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="140dp"
         android:fontFamily="@font/krona"
         android:text="SubScribe"
         android:textColor="@color/Subcribe_color"
@@ -22,66 +22,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <AutoCompleteTextView
-        android:fontFamily="@font/krona"
-        android:id="@+id/Al_EmaiL"
+    <EditText
+        android:id="@+id/SUA_Name"
         android:layout_width="277dp"
         android:layout_height="51dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/cutstom_edt"
-        android:hint="Email"
+        android:fontFamily="@font/krona"
+        android:hint="Name"
         android:paddingLeft="12dp"
-        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AL_TV1_Title" />
 
-    <EditText
-        android:fontFamily="@font/krona"
+    <AutoCompleteTextView
+        android:id="@+id/SUA_Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:background="@drawable/cutstom_edt"
-        android:id="@+id/AL_Password"
-        android:layout_width="277dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="44dp"
-        android:maxLines="1"
+        android:hint="Email"
+        android:paddingLeft="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SUA_Name"
+        android:fontFamily="@font/krona"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:id="@+id/SUA_PassW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/cutstom_edt"
+        android:fontFamily="@font/krona"
         android:hint="Password"
         android:paddingLeft="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Al_EmaiL" />
+        app:layout_constraintTop_toBottomOf="@+id/SUA_Email" />
 
     <Button
-        android:id="@+id/AL_Loginbt"
+        android:id="@+id/SUA_Registerbt"
         android:layout_width="200dp"
         android:layout_height="44dp"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/cutstom_edt"
-        android:backgroundTint="@color/brown"
-        android:fontFamily="@font/krona"
-        android:text="Login"
-        android:textColor="@color/white"
-        android:textSize="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AL_Password" />
-
-    <Button
-        android:id="@+id/AL_Registerbt"
-        android:layout_width="200dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/cutstom_edt"
         android:backgroundTint="@color/brown"
         android:fontFamily="@font/krona"
         android:text="Register"
         android:textColor="@color/white"
-        android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AL_Password" />
+        app:layout_constraintTop_toBottomOf="@+id/SUA_PassW" />
+
+    <Button
+        android:id="@+id/SUA_Backbt"
+        android:layout_width="200dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/cutstom_edt"
+        android:backgroundTint="@color/brown"
+        android:fontFamily="@font/krona"
+        android:text="Back"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SUA_Registerbt" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
