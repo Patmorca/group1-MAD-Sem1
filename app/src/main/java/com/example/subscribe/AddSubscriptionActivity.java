@@ -19,11 +19,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -38,6 +41,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
     Spinner remSpinner;
     Button datePicker;
     Button Home;
+    Button addSub;
     FirebaseFirestore subDB;
     FirebaseAuth tempAuth;
 
@@ -61,6 +65,25 @@ public class AddSubscriptionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        addSub = findViewById(R.id.AAS_CreateBtn);
+        addSub.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                try{
+                    addSub();
+                    Intent intent = new Intent(AddSubscriptionActivity.this,MainActivity.class);
+                    startActivity(intent);
+                }
+                catch (Exception e)
+                {
+                    Log.d("Button","FAILURE");
+                    return;
+                };
+            }
+        });
+
+
 
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -113,10 +136,6 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         assert userGet != null;
         String userEmail = userGet.getEmail();
 
-
-
-
-
         EditText name = findViewById(R.id.AAS_Name);
         String nameOut = name.getText().toString();
 
@@ -141,22 +160,14 @@ public class AddSubscriptionActivity extends AppCompatActivity {
 
         Subscription subOut = new Subscription(nameOut,frequencyOut,startDateOut,reminderOut,costOut,emailOut,passwordOut);
         Map<String,Subscription> subStore = new HashMap<>();
-        subStore.put(userEmail,subOut);
+        subStore.put(nameOut,subOut);
 
-        subDB.collection("subscriptions")
-                .add(subStore)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("DBDebug","Added");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("DBDebug","Error",e);
-                    }
-                });
+
+
+
+        subDB.collection("subscriptions").document(userEmail).collection("subscriptions").add(subStore);
+        //Should definitely put some error checking in here but we can get around to that later.
+
     }
 
 
