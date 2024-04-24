@@ -15,6 +15,9 @@
         android:theme="@style/Theme.SubScribe"
         tools:targetApi="31">
         <activity
+            android:name=".MonthlyCostActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUp_Activity"
             android:exported="false" />
         <activity
@@ -22,6 +25,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -33,12 +37,10 @@
             android:exported="false" />
         <activity
             android:name=".ViewSubActivity"
-            android:exported="false" />
-        <!-- Xóa intent-filter từ MainActivity -->
+            android:exported="false" /> <!-- Xóa intent-filter từ MainActivity -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

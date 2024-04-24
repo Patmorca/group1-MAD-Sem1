@@ -3,6 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="brown">#4C2B36</color>
-<color name="Subcribe_color">#8B6042</color>
+    <color name="Subcribe_color">#8B6042</color>
     <color name="background">#F3F3F1</color>
+    <color name="buttonbeige">#C9CEBD</color>
+
 </resources>

@@ -24,12 +24,12 @@
 
         <Button
             android:id="@+id/AVS_HomeBtn"
-            android:layout_width="130dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
 
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="20dp"
             android:backgroundTint="#C9CEBD"
             android:background="@drawable/button"
 
@@ -58,13 +58,13 @@
 
         <Button
             android:id="@+id/AVS_SettingsBtn"
-            android:layout_width="130dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button"
 
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="25dp"
+            android:layout_marginEnd="20dp"
             android:backgroundTint="#C9CEBD"
 
             android:fontFamily="@font/krona"
@@ -81,40 +81,110 @@
         android:id="@+id/AVS_Information"
         tools:ignore="UselessParent">
 
+        <!-- ALL THE TEXT NAMES HERE WILL BE RETRIEVED FROM DB -->
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="30dp">
 
             <TextView
+                android:id="@+id/AVS_Subname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HELLO"/>
+                android:layout_gravity="center"
+                android:padding="30dp"
+                android:fontFamily="@font/krona"
+                android:textSize="50sp"
+
+                android:text="NETFLIX"
+            />
 
             <TextView
+                android:id="@+id/AVS_Costtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HELLO"/>
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:fontFamily="@font/krona"
+                android:textSize="25sp"
+
+                android:text="Subscription Cost:"
+            />
 
             <TextView
+                android:id="@+id/AVS_Cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HELLO"/>
+                android:layout_gravity="center"
+                android:fontFamily="@font/krona"
+
+                android:text="$0.00"
+            />
 
             <TextView
+                android:id="@+id/AVS_Freqtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HELLO"/>
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:fontFamily="@font/krona"
+                android:textSize="25sp"
+
+                android:text="Frequency:"
+            />
 
             <TextView
+                android:id="@+id/Frequency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HELLO"/>
+                android:layout_gravity="center"
+                android:fontFamily="@font/krona"
+
+                android:text="MONTHLY"
+            />
 
             <TextView
+                android:id="@+id/AVS_Starttitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HELLO"/>
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:fontFamily="@font/krona"
+                android:textSize="25sp"
+
+                android:text="Start Date:"
+            />
+            <TextView
+                android:id="@+id/AVS_StartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/krona"
+
+                android:text="xx/xx/xxxx"
+            />
+            <TextView
+                android:id="@+id/AVS_Remtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:fontFamily="@font/krona"
+                android:textSize="25sp"
+
+                android:text="Next Reminder:"
+            />
+            <TextView
+                android:id="@+id/AVS_Reminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/krona"
+
+                android:text="xx/xx/xxx"
+            />
 
         </LinearLayout>
 
@@ -137,7 +207,7 @@
             android:adjustViewBounds="true"
 
             android:contentDescription="@string/FooterOptionsDescription"
-            app:srcCompat="@drawable/footerback_avs__svg"
+            app:srcCompat="@drawable/footerbackavs_svg"
             />
 
         <LinearLayout
@@ -148,11 +218,12 @@
             android:layout_centerInParent="true">
 
             <Button
-                android:id="@+id/AVS_Remove"
-                android:layout_width="wrap_content"
+                android:id="@+id/AVS_ViewDetails"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:text="@string/LoginDetails"
 
-                android:layout_margin="8dp"
+                android:layout_margin="6dp"
                 android:layout_gravity="center_vertical"
                 android:backgroundTint="#C9CEBD"
                 android:background="@drawable/button"
@@ -160,21 +231,24 @@
 
             <Button
                 android:id="@+id/AVS_Edit"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:text="@string/Edit"
 
-                android:layout_margin="8dp"
+                android:layout_margin="6dp"
                 android:layout_gravity="center_vertical"
                 android:backgroundTint="#C9CEBD"
                 android:background="@drawable/button"
                 />
 
             <Button
-                android:id="@+id/AVS_ViewDetails"
-                android:layout_width="wrap_content"
+                android:id="@+id/AVS_Delete"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:text="@string/Delete"
+                android:textColor="#800000"
 
-                android:layout_margin="8dp"
+                android:layout_margin="6dp"
                 android:layout_gravity="center_vertical"
                 android:backgroundTint="#C9CEBD"
                 android:background="@drawable/button"

@@ -10,6 +10,11 @@
     <string name="Login">Login</string>
     <string name="Settings">Settings</string>
 
+    <string name="LoginDetails">View Login Details</string>
+    <string name="Delete">Delete Tracker</string>
+    <string name="Edit">Edit Subscription</string>
+
+
     <string name="Total">Total</string>
     <string name="Price">$0.00</string>
 
