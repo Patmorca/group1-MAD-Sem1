@@ -12,9 +12,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.Firebase;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class MainActivity extends AppCompatActivity {
 
     Button AddSub = null;
+    FirebaseFirestore subDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        subDB = FirebaseFirestore.getInstance();
     }
 }

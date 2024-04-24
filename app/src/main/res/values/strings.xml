@@ -5,6 +5,7 @@
     <string name="FooterDescription">Footer for Displaying Price</string>
     <string name="FooterOptionsDescription">Footer for Displaying Options</string>
     <string name="FooterCreateDescription">Footer for Displaying Create</string>
+    <string name="FooterMonthlyDescription">Footer for Displaying Monthly Cost</string>
 
     <string name="Add">+</string>
     <string name="Login">Login</string>
@@ -27,5 +28,12 @@
     <string name="Cost_Name">Cost:</string>
     <string name="Email_Name">Email:</string>
     <string name="Password_Name">Password:</string>
+
+    <string name="searchHint">Search</string>
+    <string name="SortPriceDesc">Sort: $ \u2B07</string>
+    <string name="SortPriceAsce">Sort: $ \u2B06</string>
+    <string name="NameDesc">Sort: A \u2B07</string>
+    <string name="NameAsce">Sort: A \u2B07</string>
+    <string name="Go">Go</string>
 
 </resources>

@@ -3,33 +3,49 @@ package com.example.subscribe;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddSubscriptionActivity extends AppCompatActivity {
 
-    private Spinner freqSpinner;
-    private Spinner remSpinner;
+    Spinner freqSpinner;
+    Spinner remSpinner;
     Button datePicker;
     Button Home;
+    FirebaseFirestore subDB;
+    FirebaseAuth tempAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_subscription);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.ADDSUBSCRIPTION), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -73,6 +89,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         ArrayAdapter remAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,reminders);
         remAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         remSpinner.setAdapter(remAdapter);
+
     }
 
     private void openDialog(int year, int month, int day)
@@ -85,6 +102,59 @@ public class AddSubscriptionActivity extends AppCompatActivity {
             }
         }, year,month,day);
         dialog.show();
+    }
+
+    private void addSub() throws Exception
+    {
+        subDB = FirebaseFirestore.getInstance();
+        tempAuth = FirebaseAuth.getInstance();
+        FirebaseUser userGet = tempAuth.getCurrentUser();
+        String userEmail = userGet.getEmail();
+
+
+
+
+
+        EditText name = findViewById(R.id.AAS_Name);
+        String nameOut = name.getText().toString();
+
+        Spinner frequency = findViewById(R.id.AAS_FreqOptions);
+        String frequencyOut = frequency.getSelectedItem().toString();
+
+        Button startDate = findViewById(R.id.AAS_DatePickerBtn);
+        String startDateString = startDate.getText().toString();
+        Date startDateOut = new SimpleDateFormat("dd/MM/yyyy").parse(startDateString);
+
+        Spinner reminder = findViewById(R.id.AAS_ReminderOptions);
+        String reminderOut = reminder.getSelectedItem().toString();
+
+        EditText cost = findViewById(R.id.AAS_Cost);
+        float costOut = Float.parseFloat(cost.getText().toString());
+
+        EditText email = findViewById(R.id.AAS_Email);
+        String emailOut = email.getText().toString();
+
+        EditText password = findViewById(R.id.AAS_Password);
+        String passwordOut = password.getText().toString();
+
+        Subscription subOut = new Subscription(nameOut,frequencyOut,startDateOut,reminderOut,costOut,emailOut,passwordOut);
+        Map<String,Subscription> subStore = new HashMap<String, Subscription>();
+        subStore.put(userEmail,subOut);
+
+        subDB.collection("subscriptions")
+                .add(subStore)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("DBDebug","Added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("DBDebug","Error",e);
+                    }
+                });
     }
 
 

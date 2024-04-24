@@ -1,10 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/MONTHLYCOST"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MonthlyCostActivity">
+    tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/AMC_Banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/AMC_Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/HeaderDescription"
+            app:srcCompat="@drawable/headerback_svg" />
+
+
+        <Button
+            android:id="@+id/AMC_LoginBtn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="#C9CEBD"
+
+
+            android:fontFamily="@font/krona"
+            android:text="@string/Login"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/AMC_AddSubBtn"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/button"
+
+            android:backgroundTint="#C9CEBD"
+            android:fontFamily="@font/krona"
+
+
+            android:text="@string/Add"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:ignore="RelativeOverlap" />
+
+
+        <Button
+            android:id="@+id/AMC_SettingsBtn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="#C9CEBD"
+            android:background="@drawable/button"
+
+            android:fontFamily="@font/krona"
+            android:text="@string/Settings"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/AMC_Banner"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/AMC_SearchBox"
+                android:hint="@string/searchHint"
+                android:width="200dp"
+
+                tools:ignore="Autofill,TextFields" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/AMC_SearchBtn"
+
+                android:text="@string/Go"
+
+                android:backgroundTint="@color/buttonbeige"
+
+            />
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/AMC_SortBtn"
+
+                android:text="@string/SortPriceDesc"
+
+                android:backgroundTint="@color/buttonbeige"
+            />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/AMC_Footer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+
+            android:contentDescription="@string/HeaderDescription"
+            app:srcCompat="@drawable/footerback_svg"
+        />
+        <!--PLACEHOLDER-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/AMC_Total"
+
+            android:layout_alignBottom="@id/AMC_Footer"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+
+            android:text="@string/Total"
+            android:textColor="@color/white"
+            android:fontFamily="@font/krona"
+
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/AMC_Price"
+
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+
+            android:text="$0.00"
+            android:textColor="@color/white"
+            android:fontFamily="@font/krona"
+            android:textSize="40sp"
+
+        />
+
+    </RelativeLayout>
+
+</RelativeLayout>
