@@ -1,5 +1,6 @@
 package com.example.subscribe;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -52,7 +53,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         });
 
 
-        Home = (Button) findViewById(R.id.AAS_HomeBtn);
+        Home = findViewById(R.id.AAS_HomeBtn);
         Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,6 +110,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         subDB = FirebaseFirestore.getInstance();
         tempAuth = FirebaseAuth.getInstance();
         FirebaseUser userGet = tempAuth.getCurrentUser();
+        assert userGet != null;
         String userEmail = userGet.getEmail();
 
 
@@ -123,7 +125,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
 
         Button startDate = findViewById(R.id.AAS_DatePickerBtn);
         String startDateString = startDate.getText().toString();
-        Date startDateOut = new SimpleDateFormat("dd/MM/yyyy").parse(startDateString);
+        @SuppressLint("SimpleDateFormat") Date startDateOut = new SimpleDateFormat("dd/MM/yyyy").parse(startDateString);
 
         Spinner reminder = findViewById(R.id.AAS_ReminderOptions);
         String reminderOut = reminder.getSelectedItem().toString();
@@ -138,7 +140,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         String passwordOut = password.getText().toString();
 
         Subscription subOut = new Subscription(nameOut,frequencyOut,startDateOut,reminderOut,costOut,emailOut,passwordOut);
-        Map<String,Subscription> subStore = new HashMap<String, Subscription>();
+        Map<String,Subscription> subStore = new HashMap<>();
         subStore.put(userEmail,subOut);
 
         subDB.collection("subscriptions")

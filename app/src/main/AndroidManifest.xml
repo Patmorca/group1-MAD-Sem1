@@ -36,11 +36,8 @@
             android:name=".AddSubscriptionActivity"
             android:exported="false" />
         <activity
-            android:name=".ViewSubActivity"
-            android:exported="false" /> <!-- Xóa intent-filter từ MainActivity -->
-        <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
     </application>
 
 </manifest>

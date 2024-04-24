@@ -4,13 +4,14 @@ import java.util.Date;
 
 public class Subscription {
 
-    private String name;
-    private String frequency;
-    private Date startDate;
-    private String reminder;
-    private float cost;
-    private String email;
-    private String password;
+    //Temporarily Final to get rid of the annoying yellow lines
+    private final String name;
+    private final String frequency;
+    private final Date startDate;
+    private final String reminder;
+    private final float cost;
+    private final String email;
+    private final String password;
 
     public Subscription(String name, String frequency, Date startDate, String reminder, float cost, String email, String password)
     {
