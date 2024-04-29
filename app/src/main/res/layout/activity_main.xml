@@ -7,6 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <!-- Change Login to Logout BUTTON-->
+
     <RelativeLayout
         android:id="@+id/AM_Banner"
         android:layout_width="wrap_content"
@@ -75,18 +78,27 @@
 
     </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/AM_Banner"
-        android:layout_marginBottom="82dp"
-        >
+<RelativeLayout
+    android:id="@+id/AM_ListViewLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="80dp"
+    android:layout_marginBottom="80dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+
+    <ListView
+        android:id="@+id/AM_SubscriptionListView"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:dividerHeight="20dp"
+        android:divider="@android:color/transparent"
+        />
+
+
+
+</RelativeLayout>
 
 
     <RelativeLayout

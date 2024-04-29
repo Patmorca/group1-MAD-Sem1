@@ -166,7 +166,9 @@ public class AddSubscriptionActivity extends AppCompatActivity {
 
 
         subDB.collection("subscriptions").document(userEmail).collection("subscriptions").add(subStore);
+
         //Should definitely put some error checking in here but we can get around to that later.
+        //
 
     }
 
