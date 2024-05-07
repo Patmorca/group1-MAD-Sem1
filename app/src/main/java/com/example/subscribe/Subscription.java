@@ -4,18 +4,20 @@ import java.util.Date;
 
 public class Subscription {
 
-    //Temporarily Final to get rid of the annoying yellow lines
-    private final String name;
-    private final String frequency;
-    private final Date startDate;
-    private final String reminder;
-    private final float cost;
-    private final String email;
-    private final String password;
+    public   String subName;
+    public   String frequency;
+    public Date startDate;
+    public String reminder;
+    public float cost;
+    public   String email;
+    public   String password;
+    public Subscription (){
 
-    public Subscription(String name, String frequency, Date startDate, String reminder, float cost, String email, String password)
+    }
+
+    public Subscription(String subName, String frequency, Date startDate, String reminder, float cost, String email, String password)
     {
-        this.name = name;
+        this.subName = subName;
         this.frequency = frequency;
         this.startDate = startDate;
         this.reminder = reminder;
@@ -24,7 +26,7 @@ public class Subscription {
         this.password = password;
     }
 
-    public String getSubName() {return name;}
+    public String getSubName() {return subName;}
     public String getFrequency() {return frequency;}
     public Date getStartDate() {return startDate;}
     public String getReminder() {return reminder;}

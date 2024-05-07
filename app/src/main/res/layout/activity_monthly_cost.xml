@@ -76,10 +76,11 @@
 
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_below="@id/AMC_Banner"
+        android:layout_centerInParent="true"
         android:layout_marginTop="10dp">
 
         <LinearLayout
@@ -89,42 +90,50 @@
             tools:ignore="UselessParent">
 
             <EditText
+                android:id="@+id/AMC_SearchBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/AMC_SearchBox"
-                android:hint="@string/searchHint"
                 android:width="200dp"
+                android:hint="@string/searchHint"
 
                 tools:ignore="Autofill,TextFields" />
 
             <Button
+                android:id="@+id/AMC_SearchBtn"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/AMC_SearchBtn"
+
+                android:backgroundTint="@color/buttonbeige"
 
                 android:text="@string/Go"
 
-                android:backgroundTint="@color/buttonbeige"
+                />
 
-            />
             <Button
+                android:id="@+id/AMC_SortBtn"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/AMC_SortBtn"
-
-                android:text="@string/SortPriceDesc"
 
                 android:backgroundTint="@color/buttonbeige"
-            />
+
+                android:text="@string/SortPriceDesc" />
 
         </LinearLayout>
 
     </RelativeLayout>
 
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AMC_RecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="477dp"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="21dp" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
@@ -136,39 +145,38 @@
             android:adjustViewBounds="true"
 
             android:contentDescription="@string/HeaderDescription"
-            app:srcCompat="@drawable/footerback_svg"
-        />
+            app:srcCompat="@drawable/footerback_svg" />
         <!--PLACEHOLDER-->
         <TextView
+            android:id="@+id/AMC_Total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/AMC_Total"
 
             android:layout_alignBottom="@id/AMC_Footer"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="5dp"
 
+            android:fontFamily="@font/krona"
             android:text="@string/Total"
             android:textColor="@color/white"
-            android:fontFamily="@font/krona"
 
-        />
+            />
 
         <TextView
+            android:id="@+id/AMC_Price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/AMC_Price"
 
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
 
+            android:fontFamily="@font/krona"
             android:text="$0.00"
             android:textColor="@color/white"
-            android:fontFamily="@font/krona"
             android:textSize="40sp"
 
-        />
+            />
 
     </RelativeLayout>
 

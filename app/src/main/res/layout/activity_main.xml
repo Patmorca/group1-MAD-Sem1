@@ -86,14 +86,11 @@
     android:layout_marginBottom="80dp">
 
 
-    <ListView
-        android:id="@+id/AM_SubscriptionListView"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:dividerHeight="20dp"
-        android:divider="@android:color/transparent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/MA_recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/background"
         />
 
 
