@@ -159,13 +159,11 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         String passwordOut = password.getText().toString();
 
         Subscription subOut = new Subscription(nameOut,frequencyOut,startDateOut,reminderOut,costOut,emailOut,passwordOut);
-        Map<String,Subscription> subStore = new HashMap<>();
-        subStore.put(nameOut,subOut);
 
 
 
 
-        subDB.collection("subscriptions").document(userEmail).collection("subscriptions").add(subStore);
+        subDB.collection("subscriptions").document(userEmail).collection("subscriptions").add(subOut);
 
         //Should definitely put some error checking in here but we can get around to that later.
         //
