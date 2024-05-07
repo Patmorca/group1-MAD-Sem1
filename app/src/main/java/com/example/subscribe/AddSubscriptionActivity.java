@@ -150,7 +150,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         String reminderOut = reminder.getSelectedItem().toString();
 
         EditText cost = findViewById(R.id.AAS_Cost);
-        float costOut = Float.parseFloat(cost.getText().toString());
+        int costOut = Integer.parseInt(cost.getText().toString());
 
         EditText email = findViewById(R.id.AAS_Email);
         String emailOut = email.getText().toString();

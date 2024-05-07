@@ -8,14 +8,14 @@ public class Subscription {
     public   String frequency;
     public Date startDate;
     public String reminder;
-    public float cost;
+    public int cost;
     public   String email;
     public   String password;
     public Subscription (){
 
     }
 
-    public Subscription(String subName, String frequency, Date startDate, String reminder, float cost, String email, String password)
+    public Subscription(String subName, String frequency, Date startDate, String reminder, int cost, String email, String password)
     {
         this.subName = subName;
         this.frequency = frequency;
@@ -30,7 +30,7 @@ public class Subscription {
     public String getFrequency() {return frequency;}
     public Date getStartDate() {return startDate;}
     public String getReminder() {return reminder;}
-    public float getCost() {return cost;}
+    public int getCost() {return cost;}
     public String getEmail() {return email;}
     public String getPassword() {return password;}
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 import androidx.activity.EdgeToEdge;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
     RecyclerView recyclerView;
     ArrayList<Subscription> Subarraylist;
     SubAdapter subAdapter;
+    TextView AM_price;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +52,14 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
             return insets;
         });
 
-
+        AM_price = findViewById(R.id.AM_Price);
+        AM_price.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MonthlyCostActivity.class);
+                startActivity(i);
+            }
+        });
         AddSub = (Button) findViewById(R.id.AM_AddSubBtn);
         AddSub.setOnClickListener(new View.OnClickListener(){
             @Override
