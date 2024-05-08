@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
                     return;
                 }
                 Subarraylist.clear();
+                assert value != null;
                 for(DocumentChange dc : value.getDocumentChanges()){
                     if(dc.getType() == DocumentChange.Type.ADDED) {
                         Subarraylist.add(dc.getDocument().toObject(Subscription.class));
