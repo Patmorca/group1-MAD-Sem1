@@ -24,6 +24,10 @@
             Subs = subs;
             this.RVI = RVI;
         }
+        public  void setFileterdList(ArrayList<Subscription> fileterdList){
+            this.Subs = fileterdList;
+            notifyDataSetChanged();
+        }
 
         @NonNull
         @Override

@@ -89,25 +89,17 @@
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
-            <EditText
-                android:id="@+id/AMC_SearchBox"
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/AMC_viewSearch"
+                android:layout_width="234dp"
                 android:layout_height="wrap_content"
-                android:width="200dp"
-                android:hint="@string/searchHint"
-
-                tools:ignore="Autofill,TextFields" />
-
-            <Button
-                android:id="@+id/AMC_SearchBtn"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-
-                android:backgroundTint="@color/buttonbeige"
-
-                android:text="@string/Go"
+                app:queryHint="Search here....."
+                android:background="@color/background"
+                app:iconifiedByDefault="false"
 
                 />
+
+
 
             <Button
                 android:id="@+id/AMC_SortBtn"
