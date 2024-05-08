@@ -1,9 +1,11 @@
 package com.example.subscribe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import androidx.annotation.Nullable;
+
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -13,14 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
-import java.util.ArrayList;
+import com.google.gson.Gson;
 
-public class MonthlyCostActivity extends AppCompatActivity {
+import java.util.ArrayList;
+public class MonthlyCostActivity extends AppCompatActivity implements MainListRVInterface {
     RecyclerView recyclerView;
     FirebaseFirestore subDB;
     ArrayList<Subscription> Subarraylist;
@@ -43,7 +46,7 @@ public class MonthlyCostActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Subarraylist = new ArrayList<Subscription>();
-        myAdapter = new Monthly_Cost_Adapter(MonthlyCostActivity.this, Subarraylist);
+        myAdapter = new Monthly_Cost_Adapter(MonthlyCostActivity.this, Subarraylist , this);
         recyclerView.setAdapter(myAdapter);
         Eventchangelistener();
     }
@@ -71,4 +74,11 @@ public class MonthlyCostActivity extends AppCompatActivity {
         });
 
     }
+    @Override // View Sub
+    public void onItemClick(int pos) {
+        Intent intent = new Intent(MonthlyCostActivity.this, ViewSubscriptionActivity.class);
+        intent.putExtra("Subscription", new Gson().toJson(Subarraylist.get(pos)));
+        startActivity(intent);
+    }
+
 }
