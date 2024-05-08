@@ -11,6 +11,7 @@
         <item>12 Months</item>
     </string-array>
     <string-array name="ReminderOptions">
+        <item>In 15 Seconds</item>
         <item>The Day Before</item>
         <item>3 Days Before</item>
         <item>Week Before</item>

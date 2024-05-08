@@ -1,8 +1,14 @@
 package com.example.subscribe;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +21,7 @@ import android.widget.Spinner;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -44,6 +51,8 @@ public class AddSubscriptionActivity extends AppCompatActivity {
     Button addSub;
     FirebaseFirestore subDB;
     FirebaseAuth tempAuth;
+    public static final String NOTIFICATION_CHANNEL_ID = "10001";
+    private static final String default_notification_chanel_id = "default";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +144,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         FirebaseUser userGet = tempAuth.getCurrentUser();
         assert userGet != null;
         String userEmail = userGet.getEmail();
+        Calendar dateSetter = Calendar.getInstance();
 
         EditText name = findViewById(R.id.AAS_Name);
         String nameOut = name.getText().toString();
@@ -145,6 +155,10 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         Button startDate = findViewById(R.id.AAS_DatePickerBtn);
         String startDateString = startDate.getText().toString();
         @SuppressLint("SimpleDateFormat") Date startDateOut = new SimpleDateFormat("dd/MM/yyyy").parse(startDateString);
+        //Deprecated for Calendar, but date is how im taking in the data.
+        startDateOut.setHours(dateSetter.get(Calendar.HOUR));
+        startDateOut.setMinutes(dateSetter.get(Calendar.MINUTE));
+        startDateOut.setSeconds(dateSetter.get(Calendar.SECOND));
 
         Spinner reminder = findViewById(R.id.AAS_ReminderOptions);
         String reminderOut = reminder.getSelectedItem().toString();
@@ -161,7 +175,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         Subscription subOut = new Subscription(nameOut,frequencyOut,startDateOut,reminderOut,costOut,emailOut,passwordOut);
 
 
-
+        scheduleReminder(getNotification(subOut.getSubName() + notiTime(subOut)),DueDate.dueDateAAS(subOut));
 
         subDB.collection("subscriptions").document(userEmail).collection("subscriptions").add(subOut);
 
@@ -169,6 +183,37 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         //
 
     }
+    private void scheduleReminder (Notification reminder, Calendar date)
+    {
 
+        Intent notificationintent = new Intent(this,Reminder.class);
+        notificationintent.putExtra(Reminder.NOTIFICATION_ID,1);
+        notificationintent.putExtra(Reminder.NOTIFICATION,reminder);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,0,notificationintent,PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        assert alarmManager != null;
+        alarmManager.set(AlarmManager.RTC,date.getTimeInMillis(),pendingIntent);
+    }
+    private Notification getNotification (String content){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,default_notification_chanel_id);
+        builder.setContentTitle("Scheduled Notification");
+        builder.setContentText(content);
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.logo);
+        builder.setLargeIcon(bitmap);
+        builder.setAutoCancel(true);
+        builder.setChannelId(NOTIFICATION_CHANNEL_ID);
+        return builder.build();
+    }
+    private String notiTime(Subscription subOut)
+    {
+        String remTime = subOut.getReminder();
+        String message;
+        if(remTime.equals("In 15 Seconds")) {message = " ||Test Timer||";}
+        else if(remTime.equals("The Day Before")) {message = " Is Due Tomorrow";}
+        else if(remTime.equals("3 Days Before")) {message = " Is Due In 3 Days";}
+        else {message = " Is Due In A Week";}
+        return message;
+    }
 }

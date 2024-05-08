@@ -1,5 +1,6 @@
 package com.example.subscribe;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -29,6 +31,9 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
     TextView nextRem;
     TextView dueDate;
     Button homeBtn;
+    Button viewLogin;
+    Button deleteTracker;
+    Button editSub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,14 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ViewSubscriptionActivity.this,MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        viewLogin = findViewById(R.id.AVS_ViewDetails);
+        viewLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                displayLoginDetails();
             }
         });
 
@@ -122,7 +135,11 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
 
         dueDate.setText(df.format(c.getTime())); //This should not be couple to the nextRem setting but whatever.
 
-        if(nextRem.equals("The Day Before"))
+        if(nextRem.equals("In 15 seconds"))
+        {
+            c.add(Calendar.DATE,0);
+        }
+        else if(nextRem.equals("The Day Before"))
         {
             c.add(Calendar.DATE,-1);
         }
@@ -138,5 +155,22 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
         returnDate = df.format(c.getTime());
         return returnDate;
     }
+
+    public void displayLoginDetails()
+    {
+        Subscription detailsToView = new Gson().fromJson(getIntent().getStringExtra("Subscription"),Subscription.class);
+        String passwordToView = detailsToView.getPassword();
+        String emailToView = detailsToView.getEmail();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ViewSubscriptionActivity.this);
+        builder.setMessage("Password: " + passwordToView + "\nEmail: " + emailToView);
+        builder.setTitle("Your Credentials");
+
+        builder.setNeutralButton("Return",(DialogInterface.OnClickListener) (dialog, which) -> {dialog.cancel();
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 
 }
