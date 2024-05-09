@@ -70,4 +70,49 @@ public class DueDate {
 
     }
 
+    public static Calendar dueDateAMC(Subscription subscription)
+    {
+        Calendar remCalendar = Calendar.getInstance();
+        Date startDate = subscription.getStartDate();
+        remCalendar.setTime(startDate);
+
+        String remFreq = subscription.getFrequency();
+
+        if(remFreq.equals("30 Days"))
+        {
+            remCalendar.add(Calendar.DATE,30);
+        }
+        else if(remFreq.equals("60 Days"))
+        {
+            remCalendar.add(Calendar.DATE,60);
+        }
+        else if(remFreq.equals("90 Days"))
+        {
+            remCalendar.add(Calendar.DATE,90);
+        }
+        else if(remFreq.equals("180 Days"))
+        {
+            remCalendar.add(Calendar.DATE,180);
+        }
+        else if (remFreq.equals("1 Month"))
+        {
+            remCalendar.add(Calendar.MONTH,1);
+        }
+        else if (remFreq.equals("3 Months"))
+        {
+            remCalendar.add(Calendar.MONTH,3);
+        }
+        else if (remFreq.equals("6 Months"))
+        {
+            remCalendar.add(Calendar.MONTH,6);
+        }
+        else if (remFreq.equals("12 Months"))
+        {
+            remCalendar.add(Calendar.MONTH,12);
+        }
+
+        return remCalendar;
+
+    }
+
 }

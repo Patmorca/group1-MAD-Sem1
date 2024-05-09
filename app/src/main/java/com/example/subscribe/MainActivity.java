@@ -1,15 +1,20 @@
 package com.example.subscribe;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -30,13 +35,15 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity implements MainListRVInterface {
 
     Button AddSub = null;
     FirebaseFirestore subDB;
-
+    private static final int RC_NOTIFICATION = 99;
+    TextView Total;
     RecyclerView recyclerView;
     ArrayList<Subscription> Subarraylist;
     SubAdapter subAdapter;
@@ -49,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {requestPermissions(new String[] {Manifest.permission.POST_NOTIFICATIONS},RC_NOTIFICATION);}
             return insets;
         });
 
@@ -70,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
         });
 
         subDB = FirebaseFirestore.getInstance();
+
+        Total = findViewById(R.id.AM_Price);
 
         recyclerView = findViewById(R.id.MA_recycleView);
         recyclerView.setHasFixedSize(true);
@@ -103,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
                         Subarraylist.add(dc.getDocument().toObject(Subscription.class));
                     }
                 }
+                getTotalCost(Subarraylist);
                 subAdapter.notifyDataSetChanged();
             }
         });
@@ -115,6 +126,48 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
         intent.putExtra("Subscription", new Gson().toJson(Subarraylist.get(pos)));
         startActivity(intent);
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == RC_NOTIFICATION) {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this,"ALLOWED",Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this,"DENIED",Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+    private void getTotalCost(ArrayList<Subscription> subscriptions) //Displays next month's total.
+    {
+
+        Log.d("tcost",String.valueOf(subscriptions.size()));
+
+        float total = 0;
+        Calendar calendar  = Calendar.getInstance();
+        int nextMonth = calendar.get(Calendar.MONTH);
+        nextMonth += 2;
+
+        for(Subscription sub : subscriptions)
+        {
+            Calendar subDate = DueDate.dueDateAMC(sub);
+
+            Log.d("tcost",String.valueOf(subDate.get(Calendar.MONTH)));
+            Log.d("tcost",String.valueOf(nextMonth));
+
+            if(nextMonth == (subDate.get(Calendar.MONTH) + 1))
+            {
+                total += sub.getCost();
+            }
+        }
+        String totalOut = "$" + String.valueOf(total);
+        Total.setText(totalOut);
+    }
+
 
 
 }

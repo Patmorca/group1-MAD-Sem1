@@ -3,6 +3,9 @@ package com.example.subscribe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -25,15 +28,18 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MonthlyCostActivity extends AppCompatActivity implements MainListRVInterface {
     RecyclerView recyclerView;
     FirebaseFirestore subDB;
     ArrayList<Subscription> Subarraylist;
-
+    TextView Total;
     Monthly_Cost_Adapter myAdapter;
     SearchView searchView;
-
+    Button sortBtn;
+    int sortIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,18 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
                 return true;
             }
         });
+
+        sortBtn = findViewById(R.id.AMC_SortBtn);
+        sortIndex = 0;
+        sortBtn.setText("Sort: $ \u2B07");
+
+        sortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortOptions();
+            }
+        });
+
         subDB = FirebaseFirestore.getInstance();
         recyclerView = findViewById(R.id.AMC_RecycleView);
         recyclerView.setHasFixedSize(true);
@@ -67,6 +85,9 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
         myAdapter = new Monthly_Cost_Adapter(MonthlyCostActivity.this, Subarraylist , this);
         recyclerView.setAdapter(myAdapter);
         Eventchangelistener();
+
+        Total = findViewById(R.id.AMC_Price);
+
     }
 
     private void filterList(String newText) {
@@ -102,6 +123,7 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
                         Subarraylist.add(dc.getDocument().toObject(Subscription.class));
                     }
                 }
+                getTotalCost(Subarraylist);
                 myAdapter.notifyDataSetChanged();
             }
         });
@@ -113,5 +135,67 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
         intent.putExtra("Subscription", new Gson().toJson(Subarraylist.get(pos)));
         startActivity(intent);
     }
+
+    private void sortOptions()
+    {
+        if(sortIndex == 3)
+        {
+            sortIndex = 0;
+        }
+        else
+        {
+            sortIndex++;
+        }
+
+
+        if(sortIndex == 0)
+        {
+            sortBtn.setText("Sort: $ \u2B07");
+            //Sort option code
+        }
+        else if(sortIndex == 1)
+        {
+            sortBtn.setText("Sort: $ \u2B06");
+            //Sort option code
+        }
+        else if (sortIndex == 2)
+        {
+            sortBtn.setText("Sort: A \u2B07");
+            //Sort option code
+        }
+        else if (sortIndex == 3)
+        {
+            sortBtn.setText("Sort: A \u2B06");
+            //Sort option code
+        }
+
+    }
+
+    private void getTotalCost(ArrayList<Subscription> subscriptions) //Displays next month's total.
+    {
+
+        Log.d("tcost",String.valueOf(subscriptions.size()));
+
+        float total = 0;
+        Calendar calendar  = Calendar.getInstance();
+        int nextMonth = calendar.get(Calendar.MONTH);
+        nextMonth += 2;
+
+        for(Subscription sub : subscriptions)
+        {
+            Calendar subDate = DueDate.dueDateAMC(sub);
+
+            Log.d("tcost",String.valueOf(subDate.get(Calendar.MONTH)));
+            Log.d("tcost",String.valueOf(nextMonth));
+
+            if(nextMonth == (subDate.get(Calendar.MONTH) + 1))
+            {
+                total += sub.getCost();
+            }
+        }
+        String totalOut = "$" + String.valueOf(total);
+        Total.setText(totalOut);
+    }
+
 
 }

@@ -93,7 +93,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
 
-        String datePickerInitial = day + "/" + month + "/" + year;
+        String datePickerInitial = day + "/" + (month + 1) + "/" + year;
         datePicker = (Button) findViewById(R.id.AAS_DatePickerBtn);
         datePicker.setText(datePickerInitial);
         datePicker.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +123,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
-                String date = (day)+"/"+(month)+"/"+(year);
+                String date = (day)+"/"+(month + 1)+"/"+(year);
                 datePicker.setText(date);
             }
         }, year,month,day);

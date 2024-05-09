@@ -106,9 +106,7 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
 
-                android:backgroundTint="@color/buttonbeige"
-
-                android:text="@string/SortPriceDesc" />
+                android:backgroundTint="@color/buttonbeige" />
 
         </LinearLayout>
 
