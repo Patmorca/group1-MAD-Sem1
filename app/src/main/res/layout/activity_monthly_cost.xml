@@ -24,7 +24,7 @@
 
 
         <Button
-            android:id="@+id/AMC_LoginBtn"
+            android:id="@+id/AMC_HomeBtn"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button"
@@ -36,7 +36,7 @@
 
 
             android:fontFamily="@font/krona"
-            android:text="@string/Login"
+            android:text="@string/Home"
             android:textColor="@color/black" />
 
         <Button
@@ -120,7 +120,8 @@
         android:layout_above="@+id/relativeLayout"
         android:layout_below="@+id/relativeLayout2"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="21dp" />
+        android:layout_marginBottom="21dp"
+        android:layout_marginStart="10dp"/>
 
     <RelativeLayout
         android:id="@+id/relativeLayout"

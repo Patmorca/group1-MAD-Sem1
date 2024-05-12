@@ -29,6 +29,11 @@
             notifyDataSetChanged();
         }
 
+        public void setSortedList(ArrayList<Subscription> sortedList){
+            this.Subs = sortedList;
+            notifyDataSetChanged();
+        }
+
         @NonNull
         @Override
         public MonthlyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,7 +47,7 @@
             Log.d("SubsCostAdapter", "Subscription at position " + position + ": " + subs.getSubName());
             holder.subName.setText(subs.getSubName());
             Log.d("SubsCostAdapter", "Subscription at position " + position + ": " + subs.getCost());
-            holder.price.setText(String.valueOf(subs.getCost())); // Chuyển đổi int thành String trước khi gán cho TextView
+            holder.price.setText("$" + subs.getCost()); // Chuyển đổi int thành String trước khi gán cho TextView
         }
 
 

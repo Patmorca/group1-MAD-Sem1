@@ -110,6 +110,7 @@
             android:popupBackground="#C9CEBD"
 
             android:inputType="text"
+            android:maxLength="9"
             android:imeOptions="actionDone"
             tools:ignore="Autofill,LabelFor,TextFields"
         />
@@ -223,7 +224,7 @@
             android:background="#C9CEBD"
             android:popupBackground="#C9CEBD"
 
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:imeOptions="actionDone"
 
             tools:ignore="Autofill,LabelFor,TextFields"

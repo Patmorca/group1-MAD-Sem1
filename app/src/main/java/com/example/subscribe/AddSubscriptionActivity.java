@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -77,11 +78,11 @@ public class AddSubscriptionActivity extends AppCompatActivity {
                     Intent intent = new Intent(AddSubscriptionActivity.this,MainActivity.class);
                     startActivity(intent);
                 }
-                catch (Exception e)
-                {
-                    Log.d("Button","FAILURE");
-                    return;
-                };
+                catch (Exception e) {
+                    Toast emptyFields = Toast.makeText(AddSubscriptionActivity.this, "One or more fields are empty", Toast.LENGTH_LONG);
+                    emptyFields.show();
+
+                }
             }
         });
 
@@ -157,7 +158,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         String reminderOut = reminder.getSelectedItem().toString();
 
         EditText cost = findViewById(R.id.AAS_Cost);
-        int costOut = Integer.parseInt(cost.getText().toString());
+        float costOut = Float.parseFloat(cost.getText().toString());
 
         EditText email = findViewById(R.id.AAS_Email);
         String emailOut = email.getText().toString();
@@ -165,15 +166,19 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         EditText password = findViewById(R.id.AAS_Password);
         String passwordOut = password.getText().toString();
 
-        Subscription subOut = new Subscription(nameOut,frequencyOut,startDateOut,reminderOut,costOut,emailOut,passwordOut);
+        //ERROR CHECKING
+        if(nameOut.isEmpty() || cost.getText().toString().isEmpty() || emailOut.isEmpty() || passwordOut.isEmpty() )
+        {
+            throw new AddSubEmptyException();
+        }
+        else
+        {
+            Subscription subOut = new Subscription(nameOut,frequencyOut,startDateOut,reminderOut,costOut,emailOut,passwordOut);
+            scheduleReminder(getNotification(subOut.getSubName() + notiTime(subOut)),DueDate.dueDateAAS(subOut));
+            subDB.collection("subscriptions").document(userEmail).collection("subscriptions").add(subOut);
+        }
 
 
-        scheduleReminder(getNotification(subOut.getSubName() + notiTime(subOut)),DueDate.dueDateAAS(subOut));
-
-        subDB.collection("subscriptions").document(userEmail).collection("subscriptions").add(subOut);
-
-        //Should definitely put some error checking in here but we can get around to that later.
-        //
 
     }
     private void scheduleReminder (Notification reminder, Calendar date)

@@ -27,8 +27,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
 public class MonthlyCostActivity extends AppCompatActivity implements MainListRVInterface {
@@ -39,6 +42,9 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
     Monthly_Cost_Adapter myAdapter;
     SearchView searchView;
     Button sortBtn;
+    Button addSubBtn;
+    Button homeBtn;
+
     int sortIndex;
 
     @Override
@@ -74,6 +80,24 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
             @Override
             public void onClick(View view) {
                 sortOptions();
+            }
+        });
+
+        addSubBtn = findViewById(R.id.AMC_AddSubBtn);
+        addSubBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (MonthlyCostActivity.this, AddSubscriptionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        homeBtn = findViewById(R.id.AMC_HomeBtn);
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MonthlyCostActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -125,6 +149,7 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
                 }
                 getTotalCost(Subarraylist);
                 myAdapter.notifyDataSetChanged();
+                sortList(0);
             }
         });
 
@@ -151,22 +176,102 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
         if(sortIndex == 0)
         {
             sortBtn.setText("Sort: $ \u2B07");
-            //Sort option code
+            sortList(0);
         }
         else if(sortIndex == 1)
         {
             sortBtn.setText("Sort: $ \u2B06");
-            //Sort option code
+            sortList(1);
         }
         else if (sortIndex == 2)
         {
             sortBtn.setText("Sort: A \u2B07");
-            //Sort option code
+            sortList(2);
         }
         else if (sortIndex == 3)
         {
             sortBtn.setText("Sort: A \u2B06");
-            //Sort option code
+            sortList(3);
+        }
+
+    }
+
+    private void sortList(int option) {
+
+        ArrayList<String> sortedStringList = new ArrayList<>();
+        ArrayList<Float> sortedCostList = new ArrayList<>();
+
+        ArrayList<String> sortedSubs = new ArrayList<>();
+
+        for(Subscription sub : Subarraylist)
+        {
+            sortedStringList.add(sub.getSubName());
+            sortedCostList.add(sub.getCost());
+        }
+
+        ArrayList<Subscription> sortedSubList = new ArrayList<>(sortedStringList.size());
+
+        if(option == 0)
+        {
+            Collections.sort(sortedCostList);
+            for(int i = 0; i < sortedCostList.size(); ++i)
+            {
+                float sortedCost = sortedCostList.get(i);
+                for(int j = 0; j < Subarraylist.size(); ++j)
+                {
+                    String subName = Subarraylist.get(j).getSubName();
+                    float subCost = Subarraylist.get(j).getCost();
+
+                    if(sortedCost == subCost && !sortedSubs.contains(subName)) {sortedSubList.add(Subarraylist.get(j));sortedSubs.add(subName);}
+                }
+            }
+            myAdapter.setSortedList(sortedSubList);
+        }
+        else if(option == 1)
+        {
+            Collections.sort(sortedCostList);
+            Collections.reverse(sortedCostList);
+            for(int i = 0; i < sortedCostList.size(); ++i)
+            {
+                float sortedCost = sortedCostList.get(i);
+                for(int j = 0; j < Subarraylist.size(); ++j)
+                {
+                    String subName = Subarraylist.get(j).getSubName();
+                    float subCost = Subarraylist.get(j).getCost();
+
+                    if(sortedCost == subCost && !sortedSubs.contains(subName)) {sortedSubList.add(Subarraylist.get(j));sortedSubs.add(subName);} // Avoid duplicate prices being added to the list multiple times once they've already been sorted
+                }
+            }
+            myAdapter.setSortedList(sortedSubList);
+        }
+        else if(option == 2)
+        {
+            Collections.sort(sortedStringList);
+            for(int i = 0; i < sortedStringList.size(); ++i)
+            {
+                String sortedStringName = sortedStringList.get(i).trim();
+                for(int j = 0; j < Subarraylist.size(); ++j)
+                {
+                    String subName = Subarraylist.get(j).getSubName().trim();
+                    if(subName.equals(sortedStringName)) {sortedSubList.add(Subarraylist.get(j));}
+                }
+            }
+            myAdapter.setSortedList(sortedSubList);
+        }
+        else if(option == 3)
+        {
+            Collections.sort(sortedStringList);
+            Collections.reverse(sortedStringList);
+            for(int i = 0; i < sortedStringList.size(); ++i)
+            {
+                String sortedStringName = sortedStringList.get(i).trim();
+                for(int j = 0; j < Subarraylist.size(); ++j)
+                {
+                    String subName = Subarraylist.get(j).getSubName().trim();
+                    if(subName.equals(sortedStringName)) {sortedSubList.add(Subarraylist.get(j));}
+                }
+            }
+            myAdapter.setSortedList(sortedSubList);
         }
 
     }
