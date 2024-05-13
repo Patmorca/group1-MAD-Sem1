@@ -56,7 +56,9 @@ public class Setting extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser();
 
 
-        String username = currentUser.getEmail().replaceAll("@.*","");
+
+
+        String username = currentUser.getEmail().toString().replaceAll("@.*","");
         user.setText(username);
         email.setText(currentUser.getEmail());
 

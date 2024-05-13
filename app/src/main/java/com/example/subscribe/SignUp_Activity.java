@@ -33,6 +33,8 @@ public class SignUp_Activity extends AppCompatActivity {
     private FirebaseUser currentUser;
     // Firebase connection
 
+    //WE CAN'T ALLOW DUPLICATE ACCOUNTS!
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("User");
 

@@ -63,7 +63,11 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
         });
 
 
+
+
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+
 
         AM_price = findViewById(R.id.AM_Price);
         AM_price.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firebaseAuth.signOut();
+//                firebaseAuth.signOut();
                 Intent intent = new Intent(MainActivity.this, Setting.class);
                 startActivity(intent);
             }
