@@ -36,4 +36,7 @@
     <string name="NameAsce">Sort: A \u2B07</string>
     <string name="Go">Go</string>
 
+    <string name="ChangePassword">Change Password:</string>
+    <string name="ChangeButton">Change Password</string>
+
 </resources>

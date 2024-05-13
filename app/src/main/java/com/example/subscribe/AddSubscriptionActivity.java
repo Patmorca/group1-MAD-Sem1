@@ -175,7 +175,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         {
             Subscription subOut = new Subscription(nameOut,frequencyOut,startDateOut,reminderOut,costOut,emailOut,passwordOut);
             scheduleReminder(getNotification(subOut.getSubName() + notiTime(subOut)),DueDate.dueDateAAS(subOut));
-            subDB.collection("subscriptions").document(userEmail).collection("subscriptions").add(subOut);
+            subDB.collection("subscriptions").document(userEmail).collection("subscriptions").document(subOut.getSubName()).set(subOut);
         }
 
 

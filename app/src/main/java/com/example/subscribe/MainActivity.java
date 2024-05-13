@@ -41,6 +41,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity implements MainListRVInterface {
 
     Button AddSub = null;
+    Button settingsBtn;
     FirebaseFirestore subDB;
     private static final int RC_NOTIFICATION = 99;
     TextView Total;
@@ -73,6 +74,15 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this, AddSubscriptionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        settingsBtn = findViewById(R.id.AM_SettingsBtn);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, UserSettingsActivity.class);
                 startActivity(intent);
             }
         });

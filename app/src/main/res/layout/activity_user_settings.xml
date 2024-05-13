@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/USERSETTINGS"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserSettingsActivity">
+
+
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="120dp"
+        android:layout_centerHorizontal="true"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/AUS_User"
+            android:fontFamily="@font/krona"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/AUS_CurrentEmail"
+            android:layout_below="@id/AUS_User"
+            android:fontFamily="@font/krona"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/AUS_FooterLayout"
+        android:layout_marginBottom="60dp">
+
+
+        <View android:layout_width="match_parent" android:layout_height="3dp" android:background="#70000000"  android:layout_marginTop="0dp" android:layout_marginStart="10dp" android:layout_marginEnd="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/AUS_Change"
+            android:text="@string/ChangePassword"
+            android:fontFamily="@font/krona"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            />
+
+        <EditText
+            android:layout_width="277dp"
+            android:layout_height="51dp"
+            android:id="@+id/AUS_CurrentPassword"
+            android:background="@drawable/cutstom_edt"
+            android:hint="Current Password"
+            android:paddingLeft="12dp"
+            android:fontFamily="@font/krona"
+
+            android:inputType="textPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            />
+
+        <EditText
+            android:layout_width="277dp"
+            android:layout_height="51dp"
+            android:id="@+id/AUS_Password"
+            android:background="@drawable/cutstom_edt"
+            android:hint="New Password"
+            android:paddingLeft="12dp"
+            android:fontFamily="@font/krona"
+
+            android:inputType="textPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130dp"
+            />
+        <EditText
+            android:layout_width="277dp"
+            android:layout_height="51dp"
+            android:id="@+id/AUS_ConfirmPassword"
+            android:background="@drawable/cutstom_edt"
+            android:hint="Confirm Password"
+            android:paddingLeft="12dp"
+            android:fontFamily="@font/krona"
+
+            android:inputType="textPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200dp"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_alignParentBottom="true"
+    android:id="@+id/AUS_FooterLayout"
+    tools:ignore="UselessParent"
+    android:layout_centerHorizontal="true">
+
+
+        <Button
+            android:id="@+id/AUS_ChangeBtn"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+
+            android:layout_centerHorizontal="true"
+
+            android:backgroundTint="@color/brown"
+            android:fontFamily="@font/krona"
+            android:text="@string/ChangeButton"
+            android:textColor="@color/white"
+            android:background="@drawable/button"
+
+
+            />
+
+        <Button
+            android:id="@+id/AUS_HomeBtn"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+
+
+            android:layout_centerHorizontal="true"
+
+            android:backgroundTint="@color/brown"
+            android:fontFamily="@font/krona"
+            android:text="@string/Home"
+            android:textColor="@color/white"
+            android:background="@drawable/button"
+            android:layout_marginTop="80dp"
+
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -173,4 +173,10 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
     }
 
 
+    public void removeSubscription()
+    {
+        
+    }
+
+
 }
