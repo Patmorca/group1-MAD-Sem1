@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/SETTING"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Setting">
+
+
+
+    <RelativeLayout
+        android:id="@+id/AS_Banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/AS_Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/HeaderDescription"
+            app:srcCompat="@drawable/headerback_svg" />
+
+        <Button
+            android:id="@+id/AS_HomeBtn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="#C9CEBD"
+            android:background="@drawable/button"
+
+
+            android:fontFamily="@font/krona"
+            android:text="@string/Home"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/AS_AddSubBtn"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/button"
+
+            android:backgroundTint="#C9CEBD"
+            android:fontFamily="@font/krona"
+
+
+            android:text="@string/Add"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            tools:ignore="RelativeOverlap" />
+
+
+        <Button
+            android:id="@+id/AS_SettingsBtn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="#C9CEBD"
+
+            android:fontFamily="@font/krona"
+            android:text="@string/Settings"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="120dp"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/AS_User"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/krona"
+            android:textSize="40sp"
+
+
+            />
+        <TextView
+            android:id="@+id/AS_Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/krona"
+            android:textSize="20sp"
+
+
+            />
+    </RelativeLayout>
+
+
+
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/AS_SubOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AS_Banner"
+
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="85dp">
+
+        <View
+            android:layout_width="320dp"
+            android:layout_height="2dp"
+            android:layout_below="@+id/AS_NewPassword"
+            android:layout_alignStart="@+id/AS_NewPassword"
+            android:layout_alignEnd="@+id/EditIconNew"
+            android:layout_margin="5dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="-95dp"
+            android:layout_marginEnd="46dp"
+            android:layout_marginBottom="5dp"
+            android:background="#8D6346" />
+
+        <View
+            android:layout_width="320dp"
+            android:layout_height="2dp"
+            android:layout_below="@+id/AS_CurrentPassword"
+            android:layout_alignStart="@+id/AS_NewPassword"
+            android:layout_alignEnd="@+id/EditIconCurrent"
+            android:layout_margin="5dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="46dp"
+            android:background="#8D6346" />
+
+        <ImageView
+            android:id="@+id/EditIconNew"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/AS_NewPassword"
+            android:layout_alignBottom="@+id/AS_NewPassword"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@+id/AS_NewPassword"
+            app:srcCompat="@drawable/frame_1" />
+
+
+        <TextView
+            android:id="@+id/AS_CurrentPasswordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="125dp"
+            android:fontFamily="@font/krona"
+            android:text="@string/CurrentPassword"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+
+            />
+
+        <EditText
+            android:id="@+id/AS_NewPassword"
+            android:layout_width="340dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/AS_NewPasswordTitle"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:background="#00C9CEBD"
+            android:hint="New Password..."
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+
+            android:paddingStart="10dp"
+
+            tools:ignore="Autofill,LabelFor,TextFields"
+
+            />
+
+        <TextView
+            android:id="@+id/AS_NewPasswordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="225dp"
+            android:fontFamily="@font/krona"
+            android:text="@string/NewPassword"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+
+            />
+
+        <EditText
+            android:id="@+id/AS_CurrentPassword"
+            android:layout_width="340dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/AS_CurrentPasswordTitle"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:background="#00C9CEBD"
+            android:hint="Current Password..."
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+
+            android:paddingStart="10dp"
+
+            tools:ignore="Autofill,LabelFor,TextFields"
+
+            />
+
+        <ImageView
+            android:id="@+id/EditIconCurrent"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/AS_CurrentPassword"
+            android:layout_alignBottom="@+id/AS_CurrentPassword"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@+id/AS_CurrentPassword"
+            app:srcCompat="@drawable/frame_1" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/AS_FooterLayout"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/AS_Footer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/FooterCreateDescription"
+            app:srcCompat="@drawable/footerback_svg"
+            />
+
+        <Button
+            android:id="@+id/AS_SaveBtn"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+
+
+            android:layout_centerInParent="true"
+
+            android:background="@drawable/button"
+            android:backgroundTint="#C9CEBD"
+            android:fontFamily="@font/krona"
+            android:text="Save"
+            android:textColor="@color/black"
+
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

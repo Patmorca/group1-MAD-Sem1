@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
 
     Button AddSub = null;
     Button settingsBtn;
+    Button logoutBtn;
     FirebaseFirestore subDB;
     private static final int RC_NOTIFICATION = 99;
     TextView Total;
@@ -60,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {requestPermissions(new String[] {Manifest.permission.POST_NOTIFICATIONS},RC_NOTIFICATION);}
             return insets;
         });
+
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         AM_price = findViewById(R.id.AM_Price);
         AM_price.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +86,18 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, UserSettingsActivity.class);
+                firebaseAuth.signOut();
+                Intent intent = new Intent(MainActivity.this, Setting.class);
+                startActivity(intent);
+            }
+        });
+
+        logoutBtn = findViewById(R.id.AM_LogoutBtn);
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this,Login_Activity.class);
                 startActivity(intent);
             }
         });

@@ -10,6 +10,7 @@
     <string name="Add">+</string>
     <string name="Login">Login</string>
     <string name="Settings">Settings</string>
+    <string name="Logout">Logout</string>
 
     <string name="LoginDetails">View Login Details</string>
     <string name="Delete">Delete Tracker</string>
@@ -28,6 +29,10 @@
     <string name="Cost_Name">Cost:</string>
     <string name="Email_Name">Email:</string>
     <string name="Password_Name">Password:</string>
+
+
+    <string name="CurrentPassword">Current Password:</string>
+    <string name="NewPassword">New Password:</string>
 
     <string name="searchHint">Search</string>
     <string name="SortPriceDesc">Sort: $ \u2B07</string>
