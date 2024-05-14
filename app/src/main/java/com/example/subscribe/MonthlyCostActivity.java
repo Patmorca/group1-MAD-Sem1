@@ -27,12 +27,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
-import java.time.Month;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 
 public class MonthlyCostActivity extends AppCompatActivity implements MainListRVInterface {
     RecyclerView recyclerView;
@@ -273,7 +270,6 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
             }
             myAdapter.setSortedList(sortedSubList);
         }
-
     }
 
     private void getTotalCost(ArrayList<Subscription> subscriptions) //Displays next month's total.
@@ -301,6 +297,4 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
         String totalOut = "$" + String.valueOf(total);
         Total.setText(totalOut);
     }
-
-
 }

@@ -67,7 +67,7 @@ public class Setting extends AppCompatActivity {
             public void onClick(View view) {
 
                 String passwordOut = newPassword.getText().toString().trim();
-                String currentPasswordCheck = currentPassword.getText().toString().trim();
+                    String currentPasswordCheck = currentPassword.getText().toString().trim();
 
                 if(passwordOut.isEmpty() || currentPasswordCheck.isEmpty())
                 {
@@ -105,6 +105,7 @@ public class Setting extends AppCompatActivity {
                                     }
                                     else{
                                         Log.d("reauth","FAILURE - Reauth failure");
+                                        Toast.makeText(Setting.this, "Wrong current password", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
