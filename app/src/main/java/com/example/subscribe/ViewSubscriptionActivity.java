@@ -3,6 +3,7 @@ package com.example.subscribe;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -211,6 +212,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
+                                    Log.d("DeleteSuccess", "Successfully deleted subscription: " + subName);
 
                                     Toast.makeText(ViewSubscriptionActivity.this, "Delete Successed", Toast.LENGTH_SHORT).show();
 
@@ -223,6 +225,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
                                 public void onFailure(@NonNull Exception e) {
                                     // Xóa thất bại, hiển thị thông báo hoặc thực hiện các hoạt động khác
                                     Toast.makeText(ViewSubscriptionActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+                                    Log.e("DeleteError", "Error deleting subscription: " + e.getMessage());
                                 }
                             });
                 }
