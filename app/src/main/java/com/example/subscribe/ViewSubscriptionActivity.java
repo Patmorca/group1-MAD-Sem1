@@ -6,14 +6,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
 import java.text.DateFormat;
@@ -35,6 +42,8 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
     Button deleteTracker;
     Button editSub;
 
+    FirebaseFirestore subDb;
+    FirebaseAuth tempAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +61,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
         startDate = findViewById(R.id.AVS_StartDate);
         nextRem = findViewById(R.id.AVS_Reminder);
         dueDate = findViewById(R.id.AVS_DueDate);
+        deleteTracker = findViewById(R.id.AVS_Delete);
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
 
@@ -77,6 +87,15 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 displayLoginDetails();
+            }
+        });
+        deleteTracker.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Subscription subToView = new Gson().fromJson(getIntent().getStringExtra("Subscription"),Subscription.class);
+                String SubNametoDelete =  subToView.getSubName();
+                removeSubscription(SubNametoDelete);
             }
         });
 
@@ -173,10 +192,56 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
     }
 
 
-    public void removeSubscription()
-    {
-        
-    }
+    public void removeSubscription(String subName) {
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you sure you want to delete this");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    db.collection("subscriptions")
+                            .document(user.getEmail())
+                            .collection("subscriptions")
+                            .document(subName)
+                            .delete()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                    Toast.makeText(ViewSubscriptionActivity.this, "Delete Successed", Toast.LENGTH_SHORT).show();
+
+                                    startMainActivity();
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Xóa thất bại, hiển thị thông báo hoặc thực hiện các hoạt động khác
+                                    Toast.makeText(ViewSubscriptionActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            }
+        });
+        builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+    private void startMainActivity() {
+        Intent intent = new Intent(ViewSubscriptionActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 }
