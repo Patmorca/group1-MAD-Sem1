@@ -7,11 +7,14 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,7 +71,15 @@ public class Login_Activity extends AppCompatActivity {
                     Intent i = new Intent(Login_Activity.this , MainActivity.class);
                     startActivity(i);
                 }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(Login_Activity.this, "Wrong email or password" , Toast.LENGTH_SHORT).show();
+                }
             });
+        }
+        else{
+            Toast.makeText(this, "Please enter email and password" , Toast.LENGTH_LONG).show();
         }
     }
 }
