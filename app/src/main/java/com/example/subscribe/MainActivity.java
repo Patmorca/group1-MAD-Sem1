@@ -64,11 +64,6 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
 
 
 
-
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
-
-
         AM_price = findViewById(R.id.AM_Price);
         AM_price.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
         FirebaseUser userGet = tempAuth.getCurrentUser();
         assert userGet != null;
         String userEmail = userGet.getEmail();
+        assert userEmail != null;
         subDB.collection("subscriptions").document(userEmail).collection("subscriptions").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -179,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
         float total = 0;
         Calendar calendar  = Calendar.getInstance();
         int nextMonth = calendar.get(Calendar.MONTH);
-        nextMonth += 2;
+//        nextMonth += 2;
 
         for(Subscription sub : subscriptions)
         {
@@ -188,12 +184,12 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
             Log.d("tcost",String.valueOf(subDate.get(Calendar.MONTH)));
             Log.d("tcost",String.valueOf(nextMonth));
 
-            if(nextMonth == (subDate.get(Calendar.MONTH) + 1))
+            if(nextMonth == (subDate.get(Calendar.MONTH)))
             {
                 total += sub.getCost();
             }
         }
-        String totalOut = "$" + String.valueOf(total);
+        String totalOut = "$" + total;
         Total.setText(totalOut);
     }
 

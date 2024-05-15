@@ -41,7 +41,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
     Button homeBtn;
     Button viewLogin;
     Button deleteTracker;
-    Button editSub;
+    Button addSubBtn;
 
     FirebaseFirestore subDb;
     FirebaseAuth tempAuth;
@@ -69,7 +69,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
 
         Subscription subToView = new Gson().fromJson(getIntent().getStringExtra("Subscription"),Subscription.class);
         subName.setText(subToView.getSubName());
-        subCost.setText(Double.toString(subToView.getCost()));
+        subCost.setText(Float.toString(subToView.getCost()));
         subFreq.setText(subToView.getFrequency());
         startDate.setText(df.format(subToView.getStartDate()));
         nextRem.setText(calcNextRem(subToView));
@@ -79,6 +79,15 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewSubscriptionActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        addSubBtn = findViewById(R.id.AVS_AddSubBtn);
+        addSubBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewSubscriptionActivity.this, AddSubscriptionActivity.class);
                 startActivity(intent);
             }
         });
@@ -155,7 +164,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
 
         dueDate.setText(df.format(c.getTime())); //This should not be couple to the nextRem setting but whatever.
 
-        if(nextRem.equals("In 15 seconds"))
+        if(nextRem.equals("In 15 Seconds"))
         {
             c.add(Calendar.DATE,0);
         }
@@ -214,7 +223,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
                                 public void onSuccess(Void aVoid) {
                                     Log.d("DeleteSuccess", "Successfully deleted subscription: " + subName);
 
-                                    Toast.makeText(ViewSubscriptionActivity.this, "Delete Successed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ViewSubscriptionActivity.this, "Delete Succeeded", Toast.LENGTH_SHORT).show();
 
                                     startMainActivity();
 
@@ -231,7 +240,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

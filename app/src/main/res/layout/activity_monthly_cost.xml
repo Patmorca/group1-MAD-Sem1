@@ -163,7 +163,6 @@
             android:layout_marginTop="5dp"
 
             android:fontFamily="@font/krona"
-            android:text="$0.00"
             android:textColor="@color/white"
             android:textSize="40sp"
 

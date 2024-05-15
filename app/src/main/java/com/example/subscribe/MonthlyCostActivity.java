@@ -41,6 +41,7 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
     Button sortBtn;
     Button addSubBtn;
     Button homeBtn;
+    Button settingsBtn;
 
     int sortIndex;
 
@@ -85,6 +86,15 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent (MonthlyCostActivity.this, AddSubscriptionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        settingsBtn = findViewById(R.id.AMC_SettingsBtn);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (MonthlyCostActivity.this,Setting.class);
                 startActivity(intent);
             }
         });
@@ -280,7 +290,7 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
         float total = 0;
         Calendar calendar  = Calendar.getInstance();
         int nextMonth = calendar.get(Calendar.MONTH);
-        nextMonth += 2;
+//        nextMonth += 2;
 
         for(Subscription sub : subscriptions)
         {
@@ -289,12 +299,12 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
             Log.d("tcost",String.valueOf(subDate.get(Calendar.MONTH)));
             Log.d("tcost",String.valueOf(nextMonth));
 
-            if(nextMonth == (subDate.get(Calendar.MONTH) + 1))
+            if(nextMonth == (subDate.get(Calendar.MONTH)))
             {
                 total += sub.getCost();
             }
         }
-        String totalOut = "$" + String.valueOf(total);
+        String totalOut = "$" + total;
         Total.setText(totalOut);
     }
 }

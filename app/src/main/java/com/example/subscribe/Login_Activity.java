@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Login_Activity extends AppCompatActivity {
     Button Login , Register, Crash;
@@ -24,8 +23,6 @@ public class Login_Activity extends AppCompatActivity {
     // Firebase Auth
 
     private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
-    private FirebaseUser firebaseUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +65,6 @@ public class Login_Activity extends AppCompatActivity {
             firebaseAuth.signInWithEmailAndPassword(email , pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
                     Intent i = new Intent(Login_Activity.this , MainActivity.class);
                     startActivity(i);
                 }

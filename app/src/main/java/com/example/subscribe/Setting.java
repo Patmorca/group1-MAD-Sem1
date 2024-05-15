@@ -43,6 +43,23 @@ public class Setting extends AppCompatActivity {
             return insets;
         });
 
+        homeBtn = findViewById(R.id.AS_HomeBtn);
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Setting.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        addSubBtn = findViewById(R.id.AS_AddSubBtn);
+        addSubBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Setting.this,AddSubscriptionActivity.class);
+                startActivity(intent);
+            }
+        });
 
         user = findViewById(R.id.AS_User);
         email = findViewById(R.id.AS_Email);
@@ -56,9 +73,8 @@ public class Setting extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser();
 
 
-
-
-        String username = currentUser.getEmail().toString().replaceAll("@.*","");
+        assert currentUser != null;
+        String username = currentUser.getEmail().replaceAll("@.*","");
         user.setText(username);
         email.setText(currentUser.getEmail());
 
@@ -117,24 +133,6 @@ public class Setting extends AppCompatActivity {
         });
 
 
-
-        homeBtn = findViewById(R.id.AS_HomeBtn);
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Setting.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        addSubBtn = findViewById(R.id.AS_AddSubBtn);
-        addSubBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Setting.this,AddSubscriptionActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
 

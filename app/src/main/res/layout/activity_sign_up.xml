@@ -17,7 +17,7 @@
         android:fontFamily="@font/krona"
         android:text="SubScribe"
         android:textColor="@color/Subcribe_color"
-        android:textSize="50dp"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

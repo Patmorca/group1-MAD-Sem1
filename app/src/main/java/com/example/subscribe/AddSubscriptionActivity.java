@@ -30,6 +30,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -42,6 +44,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
     Button datePicker;
     Button Home;
     Button addSub;
+    Button settingsBtn;
     FirebaseFirestore subDB;
     FirebaseAuth tempAuth;
     public static final String NOTIFICATION_CHANNEL_ID = "10001";
@@ -64,6 +67,15 @@ public class AddSubscriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddSubscriptionActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        settingsBtn = findViewById(R.id.AAS_SettingsBtn);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (AddSubscriptionActivity.this,Setting.class);
                 startActivity(intent);
             }
         });
@@ -156,8 +168,12 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         Spinner reminder = findViewById(R.id.AAS_ReminderOptions);
         String reminderOut = reminder.getSelectedItem().toString();
 
+
         EditText cost = findViewById(R.id.AAS_Cost);
         float costOut = Float.parseFloat(cost.getText().toString());
+        BigDecimal bd = new BigDecimal(costOut);
+        bd = bd.setScale(2, RoundingMode.CEILING);
+        costOut = bd.floatValue();
 
         EditText email = findViewById(R.id.AAS_Email);
         String emailOut = email.getText().toString();
@@ -174,6 +190,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         {
             Subscription subOut = new Subscription(nameOut,frequencyOut,startDateOut,reminderOut,costOut,emailOut,passwordOut);
             scheduleReminder(getNotification(subOut.getSubName() + notiTime(subOut)),DueDate.dueDateAAS(subOut));
+            assert userEmail != null;
             subDB.collection("subscriptions").document(userEmail).collection("subscriptions").document(subOut.getSubName()).set(subOut);
         }
 
