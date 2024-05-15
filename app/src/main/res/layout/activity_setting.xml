@@ -7,6 +7,13 @@
     android:layout_height="wrap_content"
     tools:context=".Setting">
 
+    <ProgressBar
+        android:id="@+id/AS_ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
 
 
     <RelativeLayout

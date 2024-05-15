@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ public class Setting extends AppCompatActivity {
     TextView user,email;
     EditText newPassword, currentPassword;
     Button changeBtn, homeBtn,addSubBtn;
+    ProgressBar progressBar;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
@@ -42,7 +44,7 @@ public class Setting extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        progressBar = findViewById(R.id.AS_ProgressBar);
         homeBtn = findViewById(R.id.AS_HomeBtn);
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +94,7 @@ public class Setting extends AppCompatActivity {
                     emptyError.show();
                 }
                 else{
-
+                    progressBar.setVisibility(View.VISIBLE);
 
                     AuthCredential credential = EmailAuthProvider.getCredential(currentUser.getEmail(),currentPasswordCheck);
 
@@ -104,6 +106,7 @@ public class Setting extends AppCompatActivity {
                                         currentUser.updatePassword(passwordOut).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
+                                                progressBar.setVisibility(View.GONE);
                                                 if (task.isSuccessful()){
                                                     Log.d("reauth","SUCCESS");
                                                     Toast updated = Toast.makeText(Setting.this,"Password Changed",Toast.LENGTH_LONG);
@@ -120,6 +123,7 @@ public class Setting extends AppCompatActivity {
                                         });
                                     }
                                     else{
+                                        progressBar.setVisibility(View.GONE);
                                         Log.d("reauth","FAILURE - Reauth failure");
                                         Toast.makeText(Setting.this, "Wrong current password", Toast.LENGTH_SHORT).show();
                                     }
