@@ -44,8 +44,10 @@ public class Setting extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        progressBar = findViewById(R.id.AS_ProgressBar);
-        homeBtn = findViewById(R.id.AS_HomeBtn);
+
+        progressBar = findViewById(R.id.AS_ProgressBar); // Initialise progress bar
+
+        homeBtn = findViewById(R.id.AS_HomeBtn); //Bind button for main activity
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +56,7 @@ public class Setting extends AppCompatActivity {
             }
         });
 
-        addSubBtn = findViewById(R.id.AS_AddSubBtn);
+        addSubBtn = findViewById(R.id.AS_AddSubBtn); // Bind button for add subscription activity.
         addSubBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +64,9 @@ public class Setting extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        // Initialise and bind
 
         user = findViewById(R.id.AS_User);
         email = findViewById(R.id.AS_Email);
@@ -76,9 +81,9 @@ public class Setting extends AppCompatActivity {
 
 
         assert currentUser != null;
-        String username = currentUser.getEmail().replaceAll("@.*","");
+        String username = currentUser.getEmail().replaceAll("@.*",""); // Creates a "pseudo" username to display
         user.setText(username);
-        email.setText(currentUser.getEmail());
+        email.setText(currentUser.getEmail()); // sets email
 
         changeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,16 +92,16 @@ public class Setting extends AppCompatActivity {
                 String passwordOut = newPassword.getText().toString().trim();
                     String currentPasswordCheck = currentPassword.getText().toString().trim();
 
-                if(passwordOut.isEmpty() || currentPasswordCheck.isEmpty())
+                if(passwordOut.isEmpty() || currentPasswordCheck.isEmpty()) // Checks that neither field is empty
                 {
                     Log.d("reauth","FAILURE - empty strings");
                     Toast emptyError = Toast.makeText(Setting.this,"One or more fields are empty",Toast.LENGTH_LONG);
                     emptyError.show();
                 }
                 else{
-                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.VISIBLE); // Progress bar visibility
 
-                    AuthCredential credential = EmailAuthProvider.getCredential(currentUser.getEmail(),currentPasswordCheck);
+                    AuthCredential credential = EmailAuthProvider.getCredential(currentUser.getEmail(),currentPasswordCheck); // Passes current password check to auth credential
 
                     currentUser.reauthenticate(credential)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -111,7 +116,7 @@ public class Setting extends AppCompatActivity {
                                                     Log.d("reauth","SUCCESS");
                                                     Toast updated = Toast.makeText(Setting.this,"Password Changed",Toast.LENGTH_LONG);
                                                     updated.show();
-                                                    Intent intent = new Intent(Setting.this, MainActivity.class);
+                                                    Intent intent = new Intent(Setting.this, MainActivity.class); // Returns to main
                                                     startActivity(intent);
                                                 }
                                                 else{
@@ -130,14 +135,8 @@ public class Setting extends AppCompatActivity {
                                 }
                             });
 
-
-
                 }
             }
         });
-
-
     }
-
-
 }

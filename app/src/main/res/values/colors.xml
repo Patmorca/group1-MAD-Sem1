@@ -6,5 +6,7 @@
     <color name="Subcribe_color">#8B6042</color>
     <color name="background">#F3F3F1</color>
     <color name="buttonbeige">#C9CEBD</color>
+    <color name="buttonpressed">#898076</color>
+    <color name="buttonlgnpressed">#331d24</color>
 
 </resources>

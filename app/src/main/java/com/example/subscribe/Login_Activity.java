@@ -66,7 +66,7 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     private void login(String email ,  String pass) {
-        if(!TextUtils.isEmpty(email) && ! TextUtils.isEmpty(email)){
+        if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass)){
             progressBar.setVisibility(View.VISIBLE); // Show the progress bar
             firebaseAuth.signInWithEmailAndPassword(email , pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override

@@ -15,6 +15,9 @@ public class Reminder extends BroadcastReceiver {
     public static String NOTIFICATION_ID = "notification-id";
     public static String NOTIFICATION = "notification";
 
+
+    // Generates a notification via a notification channel. Extends broadcastreceiver.
+
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationManager remManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

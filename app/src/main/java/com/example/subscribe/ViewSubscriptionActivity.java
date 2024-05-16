@@ -43,8 +43,6 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
     Button deleteTracker;
     Button addSubBtn;
 
-    FirebaseFirestore subDb;
-    FirebaseAuth tempAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +53,9 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+        // Initialisation
 
         subName = findViewById(R.id.AVS_Subname);
         subCost = findViewById(R.id.AVS_Cost);
@@ -100,7 +101,6 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
             }
         });
         deleteTracker.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 Subscription subToView = new Gson().fromJson(getIntent().getStringExtra("Subscription"),Subscription.class);
@@ -129,7 +129,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         c.setTime(startDateCalc);
 
-        if(subFreq.getText().toString().equals("30 Days")) // Yes this is an absurdly long if else chain. No, I don't care.
+        if(subFreq.getText().toString().equals("30 Days"))  // Sets subscription duration based on passed in value of subscription object.
         {
             c.add(Calendar.DATE,30);
         }
@@ -162,9 +162,9 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
             c.add(Calendar.MONTH,12);
         }
 
-        dueDate.setText(df.format(c.getTime())); //This should not be couple to the nextRem setting but whatever.
+        dueDate.setText(df.format(c.getTime()));  // Sets due date via duration calculated above
 
-        if(nextRem.equals("In 15 Seconds"))
+        if(nextRem.equals("In 15 Seconds")) // Operates backwards from due date to retrieve when the reminder is due based on passed in reminder in object
         {
             c.add(Calendar.DATE,0);
         }
@@ -185,13 +185,13 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
         return returnDate;
     }
 
-    public void displayLoginDetails()
+    public void displayLoginDetails() // Obtains object from Intent passed through, deserialised via GSON
     {
         Subscription detailsToView = new Gson().fromJson(getIntent().getStringExtra("Subscription"),Subscription.class);
         String passwordToView = detailsToView.getPassword();
         String emailToView = detailsToView.getEmail();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(ViewSubscriptionActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ViewSubscriptionActivity.this); // Constructs dialog for login details
         builder.setMessage("Password: " + passwordToView + "\nEmail: " + emailToView);
         builder.setTitle("Your Credentials");
 
@@ -204,7 +204,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
 
     public void removeSubscription(String subName) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this); // Alert dialog for double-checking intentions
         builder.setMessage("Do you sure you want to delete this");
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override

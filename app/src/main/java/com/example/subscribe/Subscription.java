@@ -4,18 +4,19 @@ import java.util.Date;
 
 public class Subscription {
 
-    public   String subName;
-    public   String frequency;
-    public Date startDate;
-    public String reminder;
-    public float cost;
-    public   String email;
-    public   String password;
+    //Data members
+    private   String subName;
+    private   String frequency;
+    private Date startDate;
+    private String reminder;
+    private float cost;
+    private  String email;
+    private   String password;
     public Subscription (){
 
-    }
+    } //Default constructor
 
-    public Subscription(String subName, String frequency, Date startDate, String reminder, float cost, String email, String password)
+    public Subscription(String subName, String frequency, Date startDate, String reminder, float cost, String email, String password) //Object constructor
     {
         this.subName = subName;
         this.frequency = frequency;
@@ -26,6 +27,7 @@ public class Subscription {
         this.password = password;
     }
 
+    //Getters
     public String getSubName() {return subName;}
     public String getFrequency() {return frequency;}
     public Date getStartDate() {return startDate;}

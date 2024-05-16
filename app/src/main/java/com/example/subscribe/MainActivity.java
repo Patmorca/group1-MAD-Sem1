@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
 
 
 
-        AM_price = findViewById(R.id.AM_Price);
+        AM_price = findViewById(R.id.AM_Price); // Bind Price button for activity change.
         AM_price.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +72,9 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
                 startActivity(i);
             }
         });
-        AddSub = (Button) findViewById(R.id.AM_AddSubBtn);
+
+
+        AddSub = (Button) findViewById(R.id.AM_AddSubBtn); // Bind Add sub button for add subscription activity change.
         AddSub.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -81,33 +83,36 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
             }
         });
 
-        settingsBtn = findViewById(R.id.AM_SettingsBtn);
+        settingsBtn = findViewById(R.id.AM_SettingsBtn); // Bind settings button for settings activity change.
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                firebaseAuth.signOut();
+
                 Intent intent = new Intent(MainActivity.this, Setting.class);
                 startActivity(intent);
             }
         });
 
-        logoutBtn = findViewById(R.id.AM_LogoutBtn);
+        logoutBtn = findViewById(R.id.AM_LogoutBtn); // Bind logout button for logout - returns to login.
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                firebaseAuth.signOut();
                 Intent intent = new Intent(MainActivity.this,Login_Activity.class);
                 startActivity(intent);
             }
         });
 
-        subDB = FirebaseFirestore.getInstance();
+        subDB = FirebaseFirestore.getInstance(); //Firestore instance
 
         Total = findViewById(R.id.AM_Price);
 
-        recyclerView = findViewById(R.id.MA_recycleView);
+        recyclerView = findViewById(R.id.MA_recycleView); //Initialising recycler view
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //Initialisation for recyclerview array of Subscription objects
 
         Subarraylist = new ArrayList<Subscription>();
         subAdapter = new SubAdapter(MainActivity.this, Subarraylist,this );
@@ -120,9 +125,9 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
     private void Eventchangelistener() {
         FirebaseAuth tempAuth;
         tempAuth = FirebaseAuth.getInstance();
-        FirebaseUser userGet = tempAuth.getCurrentUser();
+        FirebaseUser userGet = tempAuth.getCurrentUser(); //Retrieve current user from firebase auth instance
         assert userGet != null;
-        String userEmail = userGet.getEmail();
+        String userEmail = userGet.getEmail(); //Obtain email
         assert userEmail != null;
         subDB.collection("subscriptions").document(userEmail).collection("subscriptions").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -135,10 +140,10 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
                 assert value != null;
                 for(DocumentChange dc : value.getDocumentChanges()){
                     if(dc.getType() == DocumentChange.Type.ADDED) {
-                        Subarraylist.add(dc.getDocument().toObject(Subscription.class));
+                        Subarraylist.add(dc.getDocument().toObject(Subscription.class)); // Retrieve documents, convert document back to Subscription class
                     }
                 }
-                getTotalCost(Subarraylist);
+                getTotalCost(Subarraylist); //Call for total cost
                 subAdapter.notifyDataSetChanged();
             }
         });
@@ -148,10 +153,12 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
     @Override // View Sub
     public void onItemClick(int pos) {
         Intent intent = new Intent(MainActivity.this, ViewSubscriptionActivity.class);
-        intent.putExtra("Subscription", new Gson().toJson(Subarraylist.get(pos)));
+        intent.putExtra("Subscription", new Gson().toJson(Subarraylist.get(pos))); //Package subscription object to pass through to view subscription activity using Json serialisation
         startActivity(intent);
     }
 
+
+    //REQUEST PERMISSION FOR API 31> - Allows notifications to be sent for reminders
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -167,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements MainListRVInterfa
 
     }
 
-    private void getTotalCost(ArrayList<Subscription> subscriptions) //Displays next month's total.
+    private void getTotalCost(ArrayList<Subscription> subscriptions) //Displays This month's total.
     {
 
         Log.d("tcost",String.valueOf(subscriptions.size()));

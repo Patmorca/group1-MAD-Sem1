@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,6 +44,9 @@ public class SignUp_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_up);
+
+        // Binding
+
         setName = findViewById(R.id.SUA_Name);
         setEmail = findViewById(R.id.SUA_Email);
         setPass = findViewById(R.id.SUA_PassW);
@@ -74,10 +78,11 @@ public class SignUp_Activity extends AppCompatActivity {
                 String email = setEmail.getText().toString().trim();
                 String name = setName.getText().toString().trim();
                 String pass = setPass.getText().toString().trim();
+
                 CreateUserEmailAcc(name,  email , pass);
             }else{
                 Toast.makeText(SignUp_Activity.this,
-                        "No Missing Field",
+                        "Missing Fields",
                         Toast.LENGTH_LONG).show();
             }
         });
@@ -94,8 +99,16 @@ public class SignUp_Activity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         // Account Successfull
 
-                        Toast.makeText(SignUp_Activity.this , "Successfully" , Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUp_Activity.this , "Registration Successful" , Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(SignUp_Activity.this,Login_Activity.class);
+                        startActivity(intent);
                     }
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(SignUp_Activity.this,e.getMessage(),Toast.LENGTH_LONG).show(); // Duplicate account preventions
                 }
             });
         }

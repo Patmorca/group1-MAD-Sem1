@@ -26,12 +26,12 @@
         }
         public  void setFileterdList(ArrayList<Subscription> fileterdList){
             this.Subs = fileterdList;
-            notifyDataSetChanged();
+            notifyDataSetChanged(); // Sets data for filtering by search term
         }
 
         public void setSortedList(ArrayList<Subscription> sortedList){
             this.Subs = sortedList;
-            notifyDataSetChanged();
+            notifyDataSetChanged(); // Sets data for sorting via sort button
         }
 
         @NonNull

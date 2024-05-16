@@ -81,7 +81,7 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
             }
         });
 
-        addSubBtn = findViewById(R.id.AMC_AddSubBtn);
+        addSubBtn = findViewById(R.id.AMC_AddSubBtn); // Button bind for addsub activity
         addSubBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,7 +90,7 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
             }
         });
 
-        settingsBtn = findViewById(R.id.AMC_SettingsBtn);
+        settingsBtn = findViewById(R.id.AMC_SettingsBtn); // Button bind for settings activity
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +99,7 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
             }
         });
 
-        homeBtn = findViewById(R.id.AMC_HomeBtn);
+        homeBtn = findViewById(R.id.AMC_HomeBtn); // Button bind for home (Main view).
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,6 +109,9 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
         });
 
         subDB = FirebaseFirestore.getInstance();
+
+        // Recycler view initialisation
+
         recyclerView = findViewById(R.id.AMC_RecycleView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -120,6 +123,9 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
         Total = findViewById(R.id.AMC_Price);
 
     }
+
+
+    //List filtering via search function
 
     private void filterList(String newText) {
         ArrayList<Subscription> filteredList = new ArrayList<>();
@@ -134,6 +140,8 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
             myAdapter.setFileterdList(filteredList);
         }
     }
+
+    //Recyclerview population logic
 
     private void Eventchangelistener() {
         FirebaseAuth tempAuth;
@@ -159,7 +167,6 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
                 sortList(0);
             }
         });
-
     }
     @Override // View Sub
     public void onItemClick(int pos) {
@@ -170,7 +177,7 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
 
     private void sortOptions()
     {
-        if(sortIndex == 3)
+        if(sortIndex == 3) // Resets sort button when clicking out of range of options
         {
             sortIndex = 0;
         }
@@ -182,7 +189,7 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
 
         if(sortIndex == 0)
         {
-            sortBtn.setText("Sort: $ \u2B07");
+            sortBtn.setText("Sort: $ \u2B07"); // Unicode for arrows
             sortList(0);
         }
         else if(sortIndex == 1)
@@ -217,6 +224,10 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
         }
 
         ArrayList<Subscription> sortedSubList = new ArrayList<>(sortedStringList.size());
+
+
+        // Depending on the current option i.e current state of the sort button, different sorts will be applied utilising the Collections.sort() method. The names/prices get sorted initially, and then
+        // Based on the order of the sorted names/prices, their associated subscriptions are then sorted and passed back into the recycler view
 
         if(option == 0)
         {
@@ -282,7 +293,7 @@ public class MonthlyCostActivity extends AppCompatActivity implements MainListRV
         }
     }
 
-    private void getTotalCost(ArrayList<Subscription> subscriptions) //Displays next month's total.
+    private void getTotalCost(ArrayList<Subscription> subscriptions) //Displays this month's total.
     {
 
         Log.d("tcost",String.valueOf(subscriptions.size()));

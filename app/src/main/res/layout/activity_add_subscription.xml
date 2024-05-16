@@ -32,7 +32,6 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
-            android:backgroundTint="#C9CEBD"
             android:background="@drawable/button"
 
 
@@ -47,7 +46,6 @@
             android:layout_centerInParent="true"
             android:background="@drawable/button"
 
-            android:backgroundTint="#C9CEBD"
             android:fontFamily="@font/krona"
 
 
@@ -67,7 +65,6 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:backgroundTint="#C9CEBD"
 
             android:fontFamily="@font/krona"
             android:text="@string/Settings"
@@ -324,7 +321,7 @@
 
             android:layout_centerInParent="true"
 
-            android:backgroundTint="#C9CEBD"
+
             android:fontFamily="@font/krona"
             android:text="@string/CreateSub"
             android:textColor="@color/black"
